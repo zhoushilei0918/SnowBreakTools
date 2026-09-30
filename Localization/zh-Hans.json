@@ -141,10 +141,20 @@
   "ImportPsaPoses": "1. 导入动画并创建 Pose Asset",
   "OpenPoseFolder": "在资源管理器中打开 POSE 文件夹",
   "RevealAbpp": "在资源管理器中定位所选 JSON 文件",
-  "SetPostProcessButton": "设为网格体后处理动画蓝图",
+  "SetPostProcessButton": "（可选）3. 设为网格体后处理动画蓝图",
   "SetPostProcessHelp": "编译当前蓝图并设置为预览网格体的后处理动画蓝图。支持撤销；保存网格体即可保留设置。",
   "PostProcessCompileFailed": "蓝图编译失败，请先修复编译错误，再设置为后处理动画蓝图。",
   "PostProcessAlreadySet": "当前蓝图已经是该网格体的后处理动画蓝图。",
   "SetPostProcessTransaction": "设置网格体后处理动画蓝图",
-  "PostProcessSet": "已将 {0} 设为 {1} 的后处理动画蓝图。请保存网格体以保留设置；Ctrl+Z 可恢复原设置。"
+  "PostProcessSet": "已将 {0} 设为 {1} 的后处理动画蓝图。请保存网格体以保留设置；Ctrl+Z 可恢复原设置。",
+  "PhysicsContentFolder": "FModel 的 Game/Content 目录",
+  "SelectPhysicsJson": "选择物理蓝图 JSON…",
+  "AutoContentFolder": "自动识别（点击可指定目录）",
+  "PhysicsFolderHelp": "可手动指定导出的 Game/Content 目录；保持自动识别时，根据物理 JSON 所在目录定位。",
+  "ChoosePhysicsJson": "选择 FModel 导出的角色物理动画蓝图 JSON。",
+  "OpenContentFolder": "在资源管理器中打开 Game/Content 目录",
+  "ResetContentFolder": "恢复自动识别 Game/Content 目录",
+  "PhysicsSourceHelp": "选择任意目录中的 Phy.json 即可。使用当前预览模型校验所需骨骼，不需要 FModel 目录或 Skeleton JSON。",
+  "PhysicsRootBone": "根骨骼：{0}",
+  "PhysicsSourceNode": "来源节点：{0}"
 }

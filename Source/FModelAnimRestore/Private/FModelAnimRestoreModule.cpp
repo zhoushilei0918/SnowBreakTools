@@ -1,5 +1,6 @@
 #include "Modules/ModuleManager.h"
 #include "SFModelRestorePanel.h"
+#include "FModelRestoreWindow.h"
 #include "IAnimationBlueprintEditor.h"
 #include "Toolkits/AssetEditorToolkitMenuContext.h"
 #include "BlueprintEditorContext.h"
@@ -22,6 +23,7 @@ public:
     virtual void StartupModule() override
     {
         if (IsRunningCommandlet()) return;
+        for (bool Physics : {false,true}) FTabManager::RegisterDefaultTabWindowSize(TabId(Physics),FVector2D(FModelRestoreWindow::Width,600));
         Style=MakeShared<FSlateStyleSet>(TEXT("FModelAnimRestoreStyle"));
         Style->SetContentRoot(IPluginManager::Get().FindPlugin(TEXT("FModelAnimRestore"))->GetBaseDir()/TEXT("Resources"));
         Style->Set("FModelAnimRestore.Menu",new FSlateImageBrush(Style->RootToContentDir(TEXT("snow_break_logo512"),TEXT(".png")),FVector2D(20,20)));
@@ -31,6 +33,7 @@ public:
     virtual void ShutdownModule() override
     {
         if (IsRunningCommandlet()) return;
+        for (bool Physics : {false,true}) FTabManager::UnregisterDefaultTabWindowSize(TabId(Physics));
         UToolMenus::UnRegisterStartupCallback(this); UToolMenus::UnregisterOwner(this);
         for (auto& Weak:Managers) if(auto Manager=Weak.Pin())
             for(bool Physics:{false,true})Manager->UnregisterTabSpawner(TabId(Physics));
@@ -49,7 +52,7 @@ public:
             })).SetDisplayName(Title(Physics)).SetIcon(FSlateIcon("FModelAnimRestoreStyle","FModelAnimRestore.Menu")).SetMenuType(ETabSpawnerMenuType::Hidden);
             Managers.AddUnique(Manager);
         }
-        Manager->TryInvokeTab(TabId(Physics));
+        FModelRestoreWindow::ResizeStandaloneTab(Manager->TryInvokeTab(TabId(Physics)));
     }
     void Populate(FToolMenuSection& Section,bool Toolbar)
     {

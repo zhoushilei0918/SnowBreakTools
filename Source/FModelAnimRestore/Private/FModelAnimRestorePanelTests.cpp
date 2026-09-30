@@ -35,8 +35,9 @@
 #include "UObject/StrongObjectPtr.h"
 #include "UObject/UnrealType.h"
 #include "SFModelRestorePanel.h"
-#include "Widgets/Input/SFilePathPicker.h"
-#include "Widgets/Input/SEditableTextBox.h"
+#include "FModelRestoreWindow.h"
+#include "Framework/Docking/TabManager.h"
+#include "Widgets/Text/STextBlock.h"
 #include "Layout/Children.h"
 
 namespace
@@ -50,12 +51,51 @@ void FindPanelWidgets(const TSharedRef<SWidget>& Widget, const FName Type, TArra
 }
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FFModelPanelWindowTest,"FModelAnimRestore.Editor.PanelWindow",
+    EAutomationTestFlags::EditorContext|EAutomationTestFlags::EngineFilter)
+bool FFModelPanelWindowTest::RunTest(const FString&)
+{
+    // Restore real floating windows with an old saved width, rather than testing the default-size constant.
+    for (bool SharedWindow : {false, true})
+    {
+        const FName PanelId(TEXT("FModelRestore.WindowTest.Physics"));
+        const FName OtherId(TEXT("FModelRestore.WindowTest.Other"));
+        const TSharedRef<SDockTab> Owner = SNew(SDockTab);
+        const TSharedRef<FTabManager> Manager = FGlobalTabmanager::Get()->NewTabManager(Owner);
+        Manager->RegisterTabSpawner(PanelId,FOnSpawnTab::CreateLambda([](const FSpawnTabArgs&)
+        {
+            return SNew(SDockTab)[SNew(SFModelRestorePanel).Physics(true)];
+        }));
+        Manager->RegisterTabSpawner(OtherId,FOnSpawnTab::CreateLambda([](const FSpawnTabArgs&){return SNew(SDockTab);}));
+        auto Area = FTabManager::NewArea(1200,600)->SetWindow(FVector2D(40,40),false)
+            ->Split(FTabManager::NewStack()->AddTab(PanelId,ETabState::OpenedTab));
+        if (SharedWindow) Area->Split(FTabManager::NewStack()->AddTab(OtherId,ETabState::OpenedTab));
+        Manager->RestoreFrom(FTabManager::NewLayout("FModelRestore.WindowTest")->AddArea(Area),nullptr,false,EOutputCanBeNullptr::IfNoOpenTabValid);
+        const auto Tab = Manager->FindExistingLiveTab(PanelId);
+        const auto Window = Tab ? Tab->GetParentWindow() : nullptr;
+        if (TestTrue(TEXT("Restored a real Kawaii panel window"),Window.IsValid()))
+        {
+            const FVector2D Before = Window->GetClientSizeInScreen();
+            TestEqual(TEXT("Only standalone panel windows are resized"),FModelRestoreWindow::ResizeStandaloneTab(Tab),!SharedWindow);
+            const FVector2D After = Window->GetClientSizeInScreen();
+            const double ExpectedWidth = SharedWindow ? Before.X : 850.0 * Window->GetDPIScaleFactor();
+            TestTrue(TEXT("Actual window width is correct after restoring an old layout"),FMath::IsNearlyEqual(After.X,ExpectedWidth,1.0));
+            TestTrue(TEXT("Existing window height is preserved"),FMath::IsNearlyEqual(After.Y,Before.Y,1.0));
+            AddInfo(FString::Printf(TEXT("%s: client %.0f -> %.0f px; DPI %.2f; height %.0f -> %.0f"),
+                SharedWindow?TEXT("Shared"):TEXT("Standalone"),Before.X,After.X,Window->GetDPIScaleFactor(),Before.Y,After.Y));
+        }
+        Manager->CloseAllAreas();
+        Manager->UnregisterAllTabSpawners();
+    }
+    return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FFModelPanelConstructionTest,"FModelAnimRestore.Editor.PanelConstruction",
     EAutomationTestFlags::EditorContext|EAutomationTestFlags::EngineFilter)
 bool FFModelPanelConstructionTest::RunTest(const FString&)
 {
-    // The import tests do not construct Slate widgets. Exercise the actual panel and
-    // its DesktopWidgets file picker, including its live binding and callback.
+    // Import tests do not construct Slate. Exercise both real panels in both
+    // languages, including the shared context and the Pose-only mesh action.
     auto& I18N = FInternationalization::Get();
     const FString PreviousLanguage = I18N.GetCurrentLanguage()->GetName();
     for (const TCHAR* Language : {TEXT("en"), TEXT("zh-Hans")})
@@ -68,25 +108,22 @@ bool FFModelPanelConstructionTest::RunTest(const FString&)
                 Panel->SlatePrepass();
                 TArray<TSharedRef<SWidget>> Pickers;
                 FindPanelWidgets(Panel, TEXT("SFilePathPicker"), Pickers);
-                TestEqual(TEXT("Pose uses name-only buttons; physics retains its picker"), Pickers.Num(), Physics?1:0);
-                if (!Physics) {TArray<TSharedRef<SWidget>> Slots;FindPanelWidgets(Panel,TEXT("SObjectPropertyEntryBox"),Slots);TestEqual(TEXT("Readonly context asset slots"),Slots.Num(),2);}
-                if (Pickers.IsEmpty()) continue;
-                auto Picker = StaticCastSharedRef<SFilePathPicker>(Pickers[0]);
-                TArray<TSharedRef<SWidget>> TextBoxes;
-                FindPanelWidgets(Picker, TEXT("SEditableTextBox"), TextBoxes);
-                TestEqual(TEXT("File picker has an editable path"), TextBoxes.Num(), 1);
-                if (TextBoxes.Num() != 1) continue;
-                auto TextBox = StaticCastSharedRef<SEditableTextBox>(TextBoxes[0]);
-                for (const FString Path : {FString(TEXT("C:/Exports/girl022_abpp.json")), FString(TEXT("C:/Exports/ABP_Girl022_Phy.json")), FString()})
-                {
-                    Picker->SimulateTextInput(FText::FromString(Path));
-                    Panel->SlatePrepass();
-                    TestEqual(TEXT("Path commit updates the panel's bound JSON path"), TextBox->GetText().ToString(), Path);
-                }
+                TestEqual(TEXT("Both panels use shared source selection buttons"), Pickers.Num(), 0);
+                TArray<TSharedRef<SWidget>> Slots;
+                FindPanelWidgets(Panel,TEXT("SObjectPropertyEntryBox"),Slots);
+                TestEqual(TEXT("Both panels have readonly context asset slots"),Slots.Num(),2);
+                TArray<TSharedRef<SWidget>> Separators;
+                FindPanelWidgets(Panel,TEXT("SSeparator"),Separators);
+                TestEqual(TEXT("Group actions have a separator"),Separators.Num(),1);
+                TArray<TSharedRef<SWidget>> Labels;
+                FindPanelWidgets(Panel,TEXT("STextBlock"),Labels);
+                const FString PostProcessLabel=NSLOCTEXT("FModelAnimRestore","SetPostProcessButton","(Optional) 3. Set as mesh Post Process Anim Blueprint").ToString();
+                const bool HasPostProcess=Labels.ContainsByPredicate([&](const TSharedRef<SWidget>& Label){return StaticCastSharedRef<STextBlock>(Label)->GetText().ToString()==PostProcessLabel;});
+                TestEqual(TEXT("Only Pose panel offers post-process assignment"),HasPostProcess,!Physics);
             }
     }
     I18N.SetCurrentLanguage(PreviousLanguage);
-    AddInfo(TEXT("Constructed and destroyed 64 panels across both import modes and both languages; file picker callbacks passed."));
+    AddInfo(TEXT("Constructed and destroyed 64 panels across both import modes and languages; shared context, separator and Pose-only post-process action passed."));
     return true;
 }
 
@@ -203,9 +240,20 @@ bool FFModelPanelImportTest::RunTest(const FString&)
     }
     TestEqual(TEXT("Four groups added across two imports"),PoseNodes.Num(),4);
     Options->PoseBlueprintJson.FilePath.Empty();
-    Options->PhysicsBlueprintJson.FilePath=TEXT("F:/BreakSnowStudy/FModel/Output/Exports/Game/Content/Blueprints/Character/Hero/girl022/ABP_Girl022_Phy.json");
+    // Use only one loose Phy.json, outside FModel's directory tree. Its source
+    // Skeleton reference stays intact but no Skeleton JSON is copied alongside it.
+    FString PhysicsSource;
+    if(!TestTrue(TEXT("Read physics fixture"),FFileHelper::LoadFileToString(PhysicsSource,TEXT("F:/BreakSnowStudy/FModel/Output/Exports/Game/Content/Blueprints/Character/Hero/girl022/ABP_Girl022_Phy.json"))))return false;
+    const FString PhysicsFiles=FPaths::ProjectSavedDir()/TEXT("FModelAnimRestore/StandalonePhysics_")+FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    IFileManager::Get().MakeDirectory(*PhysicsFiles,true);
+    Options->PhysicsBlueprintJson.FilePath=PhysicsFiles/TEXT("Phy.json");
+    if(!TestTrue(TEXT("Copy only Phy.json"),FFileHelper::SaveStringToFile(PhysicsSource,*Options->PhysicsBlueprintJson.FilePath,FFileHelper::EEncodingOptions::ForceUTF8)))return false;
+    TArray<FString> SourceFiles;IFileManager::Get().FindFiles(SourceFiles,*(PhysicsFiles/TEXT("*")),true,false);
+    TestEqual(TEXT("Physics input directory contains only Phy.json"),SourceFiles.Num(),1);
     if(!TestTrue(TEXT("Inspect physics separately"),UFModelAnimRestoreLibrary::Inspect(Options.Get(),Groups,Report))){AddError(Report);return false;}
     TestEqual(TEXT("68 physical groups"),Groups.Num(),68);
+    if(Groups.IsEmpty())return false;
+    const FString FirstPhysicsBone=Groups[0].Bones;
     TArray<FString> PhysicsSelection; for(const auto& Group:Groups)PhysicsSelection.Add(Group.Id);
     UFModelAnimRestoreBatch* Raw=nullptr;
     if(!TestTrue(TEXT("Prepare physics separately"),UFModelAnimRestoreLibrary::PrepareForBlueprint(Options.Get(),BP.Get(),PhysicsSelection,Raw,Report))){AddError(Report);return false;}
@@ -237,7 +285,12 @@ bool FFModelPanelImportTest::RunTest(const FString&)
     const FString Filename=FPackageName::LongPackageNameToFilename(Package->GetName(),FPackageName::GetAssetPackageExtension());
     TestTrue(TEXT("Save demo blueprint"),UPackage::SavePackage(Package.Get(),BP.Get(),*Filename,SaveArgs));
     FFileHelper::SaveStringToFile(BP->GetPathName(),*(FPaths::ProjectSavedDir()/TEXT("FModelAnimRestore/Girl022PanelDemo.txt")));
-    AddInfo(TEXT("4 Pose Driver groups imported in two selections; 68 physics nodes imported separately; Undo/Redo and context isolation passed. Demo: ")+BP->GetPathName());
+    Options->PhysicsBlueprintJson.FilePath=PhysicsFiles/TEXT("MissingBone_Phy.json");
+    const FString BadPhysics=PhysicsSource.Replace(*(TEXT("\"")+FirstPhysicsBone+TEXT("\"")),TEXT("\"FModelMissingTestBone\""));
+    if(!TestTrue(TEXT("Create missing-bone fixture"),FFileHelper::SaveStringToFile(BadPhysics,*Options->PhysicsBlueprintJson.FilePath,FFileHelper::EEncodingOptions::ForceUTF8)))return false;
+    TestFalse(TEXT("Loose Phy.json still rejects missing target bones"),UFModelAnimRestoreLibrary::Inspect(Options.Get(),Groups,Report));
+    TestTrue(TEXT("Missing physics bone is identified"),Report.Contains(TEXT("FModelMissingTestBone")));
+    AddInfo(TEXT("4 Pose Driver groups imported in two selections; 68 physics nodes imported from Phy.json alone; missing-bone guard, Undo/Redo and context isolation passed. Demo: ")+BP->GetPathName());
     return true;
 }
 
@@ -281,7 +334,6 @@ bool FFModelPsaFolderTest::RunTest(const FString&)
     TestTrue(TEXT("Fixture actually imported from FBX"),Options->TargetMesh->GetAssetImportData()->GetFirstFilename().EndsWith(TEXT(".fbx")));
     Options->PoseBlueprintJson.FilePath=Files/TEXT("girl022_abpp.json");
     Options->PoseDirectory.Path=Files;
-    Options->ExportContentDirectory.Path=Files/TEXT("Nonexistent_Content_Is_Not_Required");
     TStrongObjectPtr<UAnimBlueprintFactory> Factory(NewObject<UAnimBlueprintFactory>());
     Factory->TargetSkeleton=Options->TargetMesh->GetSkeleton();Factory->PreviewSkeletalMesh=Options->TargetMesh;
     TStrongObjectPtr<UPackage> Package(CreatePackage(*(Folder/TEXT("ABP_Psa"))));

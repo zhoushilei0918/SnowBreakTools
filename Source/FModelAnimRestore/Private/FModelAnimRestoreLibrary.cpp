@@ -115,13 +115,11 @@ struct FImporter : public FGCObject
 {
     UFModelAnimRestoreOptions& Options;
     FString Error;
-    FString Root;
     TArray<FString> Notes;
     FValues Unsupported;
     TArray<TObjectPtr<UObject>> Assets;
     TArray<FPosePlan> Poses;
     TArray<FPhysicsPlan> Physics;
-    TMap<FName, FName> SourceParents;
     FString Character;
     FString ReportFile;
     FGraph PoseGraph;
@@ -148,18 +146,6 @@ struct FImporter : public FGCObject
     {
         for (auto& V : Items) if (V->Type == EJson::Object && String(V->AsObject(), TEXT("Type")) == Type) return V->AsObject();
         return nullptr;
-    }
-    FString Resolve(const FObject& Ref)
-    {
-        FString Path = String(Ref, TEXT("ObjectPath"));
-        int32 Dot;
-        if (Path.FindLastChar('.', Dot)) Path.LeftInline(Dot);
-        Path.ReplaceInline(TEXT("\\"), TEXT("/"));
-        const FString Prefix = TEXT("Game/Content/");
-        if (Path.StartsWith(TEXT("/"))) Path.RightChopInline(1);
-        if (!Path.StartsWith(Prefix) || Path.Contains(TEXT("..")))
-        { Fail(NSLOCTEXT("FModelAnimRestore","BadReference","Cannot resolve exported reference: ").ToString() + Path); return TEXT(""); }
-        return Root / Path.RightChop(Prefix.Len()) + TEXT(".json");
     }
     bool ReadGraph(const FString& Filename, FGraph& Out)
     {
@@ -202,33 +188,6 @@ struct FImporter : public FGCObject
             Current = int32(Number(Link, TEXT("LinkID"), -1));
         }
         if (!Boundary || Out.Ordered.IsEmpty()) return Fail(NSLOCTEXT("FModelAnimRestore","InputNotFound","Cannot follow Root LinkIDs to the input pose: ").ToString() + Filename);
-        return true;
-    }
-    bool ValidateSkeleton(const FGraph& Graph)
-    {
-        FValues Exports;
-        FString File = Resolve(Object(Object(Graph.Class, TEXT("Properties")), TEXT("TargetSkeleton")));
-        if (!Error.IsEmpty() || !Load(File, Exports)) return false;
-        auto Skeleton = Export(Exports, TEXT("Skeleton"));
-        const auto& Bones = Array(Object(Skeleton,TEXT("ReferenceSkeleton")), TEXT("FinalRefBoneInfo"));
-        if (Bones.IsEmpty()) return Fail(NSLOCTEXT("FModelAnimRestore","NoReferenceSkeleton","Skeleton JSON is missing ReferenceSkeleton: ").ToString() + File);
-        const auto& Target = Options.TargetMesh->GetRefSkeleton();
-        TArray<FName> Names;
-        for (auto& V : Bones) Names.Add(FName(*String(V->AsObject(), TEXT("Name"))));
-        if (Target.GetBoneName(0) != Names[0]) return Fail(NSLOCTEXT("FModelAnimRestore","RootMismatch","The mesh root bone differs from the source Skeleton.").ToString());
-        for (int32 I=0; I<Bones.Num(); ++I)
-        {
-            int32 Parent = int32(Number(Bones[I]->AsObject(), TEXT("ParentIndex"), -1));
-            if (Parent >= I || Parent < -1) return Fail(NSLOCTEXT("FModelAnimRestore","BadParent","The source Skeleton has an invalid parent index.").ToString());
-            FName ParentName = Parent >= 0 ? Names[Parent] : NAME_None;
-            SourceParents.Add(Names[I], ParentName);
-            int32 T = Target.FindBoneIndex(Names[I]);
-            if (T == INDEX_NONE) continue;
-            int32 TP = Target.GetParentIndex(T);
-            FName TargetParent = TP >= 0 ? Target.GetBoneName(TP) : NAME_None;
-            if (TargetParent != ParentName)
-                return Fail(FText::Format(NSLOCTEXT("FModelAnimRestore","HierarchyMismatch","Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."),FText::FromName(Names[I]),FText::FromName(ParentName),FText::FromName(TargetParent)).ToString());
-        }
         return true;
     }
     bool Bone(FName Name, const FString& Field, bool AllowNone = false)
@@ -369,17 +328,6 @@ struct FImporter : public FGCObject
         if (!Options.Destination.StartsWith(TEXT("/Game/")) || !FPackageName::IsValidLongPackageName(Options.Destination)) return Fail(NSLOCTEXT("FModelAnimRestore","InvalidDestination","The output folder must be a valid /Game/... path.").ToString());
         if (!Options.PoseBlueprintJson.FilePath.IsEmpty() && (Options.PoseDirectory.Path.IsEmpty() || !IFileManager::Get().DirectoryExists(*Options.PoseDirectory.Path)))
             return Fail(NSLOCTEXT("FModelAnimRestore","NeedPoseFolder","Choose the folder containing the POSE PSA files and PoseAsset JSON files.").ToString());
-        if (!Options.PhysicsBlueprintJson.FilePath.IsEmpty())
-        {
-        Root=Options.ExportContentDirectory.Path;
-        if (Root.IsEmpty())
-        {
-            Root=FPaths::GetPath(Options.PhysicsBlueprintJson.FilePath);
-            while (!Root.IsEmpty() && !FPaths::GetCleanFilename(Root).Equals(TEXT("Content"),ESearchCase::IgnoreCase))
-            { FString Parent=FPaths::GetPath(Root); if (Parent==Root) break; Root=Parent; }
-        }
-        if (Root.IsEmpty() || !IFileManager::Get().DirectoryExists(*Root)) return Fail(NSLOCTEXT("FModelAnimRestore","ContentNotFound","Cannot locate the exported Game/Content folder. Choose it explicitly.").ToString());
-        }
         Character=FPaths::GetBaseFilename(Options.PoseBlueprintJson.FilePath.IsEmpty()?Options.PhysicsBlueprintJson.FilePath:Options.PoseBlueprintJson.FilePath);
         Character.RemoveFromEnd(TEXT("_abpp"));
         if (Options.bAssignPostProcess && Options.TargetMesh->GetPostProcessAnimBlueprint()) return Fail(NSLOCTEXT("FModelAnimRestore","ExistingPostProcess","The mesh already has a Post Process Anim Blueprint. Disable assignment and merge the result manually.").ToString());
@@ -391,7 +339,9 @@ struct FImporter : public FGCObject
         }
         if (!Options.PhysicsBlueprintJson.FilePath.IsEmpty())
         {
-            if (!ReadGraph(Options.PhysicsBlueprintJson.FilePath,PhysicsGraph) || !ValidateSkeleton(PhysicsGraph)) return false;
+            // Phy.json contains the node settings. Bone references are checked by
+            // PlanPhysics against the current mesh; no external Skeleton JSON is needed.
+            if (!ReadGraph(Options.PhysicsBlueprintJson.FilePath,PhysicsGraph)) return false;
             for (auto& N : PhysicsGraph.Ordered)
                 if (!N.Name.Contains(TEXT("KawaiiPhysics")) || !PlanPhysics(N)) return Fail(NSLOCTEXT("FModelAnimRestore","UnexpectedPhysicsNode","The physics JSON contains an unsupported non-KawaiiPhysics node.").ToString());
         }
@@ -560,7 +510,7 @@ struct FImporter : public FGCObject
         J->SetStringField(TEXT("target_mesh"),Options.TargetMesh?Options.TargetMesh->GetPathName():TEXT(""));
         J->SetStringField(TEXT("abpp_json"),Options.PoseBlueprintJson.FilePath);
         J->SetStringField(TEXT("physics_json"),Options.PhysicsBlueprintJson.FilePath);
-        J->SetStringField(TEXT("export_content_directory"),Root);
+        J->SetStringField(TEXT("physics_bone_validation"),TEXT("current_mesh_bone_names"));
         J->SetStringField(TEXT("pose_folder"),Options.PoseDirectory.Path);
         FValues PoseInputs;
         for (const auto& P : Poses)

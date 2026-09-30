@@ -58,9 +58,6 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2. FModel JSON", meta=(DisplayName="物理蓝图 JSON / ABP_Phy (可选)", FilePathFilter="json"))
     FFilePath PhysicsBlueprintJson;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2. FModel JSON", meta=(DisplayName="导出 Content 目录 (可留空自动识别)"))
-    FDirectoryPath ExportContentDirectory;
-
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2. FModel JSON", meta=(DisplayName="POSE 文件夹 / POSE Folder"))
     FDirectoryPath PoseDirectory;
 

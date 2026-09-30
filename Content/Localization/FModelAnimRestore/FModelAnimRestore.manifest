@@ -40,28 +40,6 @@
         },
         {
           "Source": {
-            "Text": "The source Skeleton has an invalid parent index."
-          },
-          "Keys": [
-            {
-              "Key": "BadParent",
-              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
-            "Text": "Cannot resolve exported reference: "
-          },
-          "Keys": [
-            {
-              "Key": "BadReference",
-              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
             "Text": "Failed to create an Animation Blueprint."
           },
           "Keys": [
@@ -111,29 +89,18 @@
           "Keys": [
             {
               "Key": "ChooseAbpp",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
         {
           "Source": {
-            "Text": "Choose the exported Game/Content folder"
+            "Text": "Choose the character's physics Animation Blueprint JSON exported by FModel."
           },
           "Keys": [
             {
-              "Key": "ChooseContent",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
-            "Text": "Choose a FModel JSON export"
-          },
-          "Keys": [
-            {
-              "Key": "ChooseJson",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+              "Key": "ChoosePhysicsJson",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -144,7 +111,7 @@
           "Keys": [
             {
               "Key": "ChoosePoseFolder",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -172,28 +139,6 @@
         },
         {
           "Source": {
-            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
-          },
-          "Keys": [
-            {
-              "Key": "ContentNotFound",
-              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
-            "Text": "FModel Game/Content folder (blank = automatic)"
-          },
-          "Keys": [
-            {
-              "Key": "ContentRoot",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
             "Text": "The blueprint or preview mesh has changed. Prepare the import again in this blueprint's panel."
           },
           "Keys": [
@@ -210,7 +155,7 @@
           "Keys": [
             {
               "Key": "CreatedPoseAsset",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -221,7 +166,7 @@
           "Keys": [
             {
               "Key": "CurrentBlueprint",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -304,33 +249,11 @@
         },
         {
           "Source": {
-            "Text": "Source node: {0}\nPose samples: {1}"
-          },
-          "Keys": [
-            {
-              "Key": "GroupDetail",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
             "Text": "Found {0} groups. Select one or more groups to import."
           },
           "Keys": [
             {
               "Key": "GroupsRead",
-              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
-            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
-          },
-          "Keys": [
-            {
-              "Key": "HierarchyMismatch",
               "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
             }
           ]
@@ -353,7 +276,7 @@
           "Keys": [
             {
               "Key": "ImportedPsa",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -623,28 +546,6 @@
         },
         {
           "Source": {
-            "Text": "Set a preview mesh in this Animation Blueprint first."
-          },
-          "Keys": [
-            {
-              "Key": "NoPreviewMesh",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
-            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
-          },
-          "Keys": [
-            {
-              "Key": "NoReferenceSkeleton",
-              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
             "Text": "Added {0} nodes to {1}. Connect the new chain to your pose flow, then compile and save. Ctrl+Z undoes this insertion."
           },
           "Keys": [
@@ -661,7 +562,7 @@
           "Keys": [
             {
               "Key": "OpenPoseFolder",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -672,7 +573,7 @@
           "Keys": [
             {
               "Key": "OpenTargetGraph",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -716,7 +617,40 @@
           "Keys": [
             {
               "Key": "PhysicsJson",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Root bone: {0}"
+          },
+          "Keys": [
+            {
+              "Key": "PhysicsRootBone",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose Phy.json from any folder. Bone references are checked against the current preview mesh; no FModel folder or Skeleton JSON is required."
+          },
+          "Keys": [
+            {
+              "Key": "PhysicsSourceHelp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Source node: {0}"
+          },
+          "Keys": [
+            {
+              "Key": "PhysicsSourceNode",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -749,7 +683,7 @@
           "Keys": [
             {
               "Key": "PoseFolder",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -760,7 +694,7 @@
           "Keys": [
             {
               "Key": "PoseJson",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -870,7 +804,7 @@
           "Keys": [
             {
               "Key": "PreviewMesh",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -903,7 +837,7 @@
           "Keys": [
             {
               "Key": "PsaOutputHelp",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -947,7 +881,7 @@
           "Keys": [
             {
               "Key": "PsaReady",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -969,7 +903,7 @@
           "Keys": [
             {
               "Key": "PsaSourceFiles",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -991,7 +925,7 @@
           "Keys": [
             {
               "Key": "Ready",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -1013,18 +947,7 @@
           "Keys": [
             {
               "Key": "RevealAbpp",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
-            }
-          ]
-        },
-        {
-          "Source": {
-            "Text": "The mesh root bone differs from the source Skeleton."
-          },
-          "Keys": [
-            {
-              "Key": "RootMismatch",
-              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -1046,7 +969,7 @@
           "Keys": [
             {
               "Key": "SelectAbpp",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -1085,12 +1008,23 @@
         },
         {
           "Source": {
+            "Text": "Choose physics blueprint JSON..."
+          },
+          "Keys": [
+            {
+              "Key": "SelectPhysicsJson",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
             "Text": "Choose POSE folder..."
           },
           "Keys": [
             {
               "Key": "SelectPoseFolder",
-              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },
@@ -1107,7 +1041,7 @@
         },
         {
           "Source": {
-            "Text": "Set as mesh Post Process Anim Blueprint"
+            "Text": "(Optional) 3. Set as mesh Post Process Anim Blueprint"
           },
           "Keys": [
             {
@@ -1156,7 +1090,7 @@
           "Keys": [
             {
               "Key": "TargetGraph",
-              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanelUI.cpp"
             }
           ]
         },

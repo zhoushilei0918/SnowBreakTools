@@ -36,7 +36,7 @@ TSharedRef<SWidget> AssetSlot(const UClass* Class,const TSharedPtr<FAssetThumbna
 }
 }
 
-void SFModelRestorePanel::BuildPoseContext(const TSharedRef<SVerticalBox>& Form)
+void SFModelRestorePanel::BuildContext(const TSharedRef<SVerticalBox>& Form)
 {
     ThumbnailPool=MakeShared<FAssetThumbnailPool>(24);
     auto ContextRow=[&](const FText& Label,const UClass* Class,TFunction<FString()> GetPath)
@@ -77,40 +77,48 @@ TSharedRef<SWidget> SFModelRestorePanel::GraphMenu()
     return Menu.MakeWidget();
 }
 
-void SFModelRestorePanel::BuildPoseFileOptions(const TSharedRef<SVerticalBox>& Form)
+void SFModelRestorePanel::BuildFileOptions(const TSharedRef<SVerticalBox>& Form)
 {
     for(bool Folder : {false,true})
     {
-        auto GetPath=[this,Folder]{return Folder?Options->PoseDirectory.Path:Options->PoseBlueprintJson.FilePath;};
+        if (bPhysics && Folder) continue;
+        auto GetPath=[this,Folder]{return bPhysics?Options->PhysicsBlueprintJson.FilePath:
+            (Folder?Options->PoseDirectory.Path:Options->PoseBlueprintJson.FilePath);};
+        const FText Label=bPhysics?LOCTEXT("PhysicsJson","Physics blueprint JSON"):
+            (Folder?LOCTEXT("PoseFolder","POSE folder"):LOCTEXT("PoseJson","Pose blueprint JSON (abpp)"));
+        const FText SelectTitle=bPhysics?LOCTEXT("SelectPhysicsJson","Choose physics blueprint JSON..."):
+            (Folder?LOCTEXT("SelectPoseFolder","Choose POSE folder..."):LOCTEXT("SelectAbpp","Choose abpp.json..."));
+        const FText Help=bPhysics?LOCTEXT("ChoosePhysicsJson","Choose the character's physics Animation Blueprint JSON exported by FModel."):
+            (Folder?LOCTEXT("ChoosePoseFolder","Choose the folder containing the POSE PSA files and PoseAsset JSON files."):
+                LOCTEXT("ChooseAbpp","Choose the character's abpp.json file."));
         Form->AddSlot().AutoHeight().Padding(0,8,0,0)[SNew(SHorizontalBox)
-            +SHorizontalBox::Slot().FillWidth(.22f).VAlign(VAlign_Center)[SNew(STextBlock).Text(Folder?
-                LOCTEXT("PoseFolder","POSE folder"):LOCTEXT("PoseJson","Pose blueprint JSON (abpp)"))]
+            +SHorizontalBox::Slot().FillWidth(.22f).VAlign(VAlign_Center)[SNew(STextBlock).AutoWrapText(true).Text(Label)]
             +SHorizontalBox::Slot().FillWidth(.78f)[SNew(SHorizontalBox)
                 +SHorizontalBox::Slot().FillWidth(1)[SNew(SButton).HAlign(HAlign_Left)
-                .ToolTipText(Folder?LOCTEXT("ChoosePoseFolder","Choose the folder containing the POSE PSA files and PoseAsset JSON files."):
-                    LOCTEXT("ChooseAbpp","Choose the character's abpp.json file."))
-                .Text_Lambda([this,Folder]{FString Path=Folder?Options->PoseDirectory.Path:Options->PoseBlueprintJson.FilePath;
+                .ToolTipText(Help)
+                .Text_Lambda([GetPath,SelectTitle]{FString Path=GetPath();
                     FPaths::NormalizeDirectoryName(Path);
-                    return Path.IsEmpty()?(Folder?LOCTEXT("SelectPoseFolder","Choose POSE folder..."):LOCTEXT("SelectAbpp","Choose abpp.json...")):
-                        FText::FromString(FPaths::GetCleanFilename(Path));})
-                .OnClicked_Lambda([this,Folder]
+                    return Path.IsEmpty()?SelectTitle:FText::FromString(FPaths::GetCleanFilename(Path));})
+                .OnClicked_Lambda([this,Folder,GetPath,SelectTitle]
                 {
                     auto* Desktop=FDesktopPlatformModule::Get(); if(!Desktop)return FReply::Handled();
                     const void* Parent=FSlateApplication::Get().FindBestParentWindowHandleForDialogs(AsShared());
                     FString Selected;
                     if(Folder)
-                        Desktop->OpenDirectoryDialog(Parent,LOCTEXT("SelectPoseFolder","Choose POSE folder...").ToString(),Options->PoseDirectory.Path,Selected);
+                        Desktop->OpenDirectoryDialog(Parent,SelectTitle.ToString(),GetPath(),Selected);
                     else
                     {
                         TArray<FString> Files;
-                        if(Desktop->OpenFileDialog(Parent,LOCTEXT("SelectAbpp","Choose abpp.json...").ToString(),
-                            FPaths::GetPath(Options->PoseBlueprintJson.FilePath),TEXT(""),TEXT("JSON (*.json)|*.json"),0,Files) && !Files.IsEmpty())Selected=Files[0];
+                        if(Desktop->OpenFileDialog(Parent,SelectTitle.ToString(),
+                            FPaths::GetPath(GetPath()),TEXT(""),TEXT("JSON (*.json)|*.json"),0,Files) && !Files.IsEmpty())Selected=Files[0];
                     }
                     if(!Selected.IsEmpty())
                     {
-                        (Folder?Options->PoseDirectory.Path:Options->PoseBlueprintJson.FilePath)=Selected;
+                        if(bPhysics) Options->PhysicsBlueprintJson.FilePath=Selected;
+                        else (Folder?Options->PoseDirectory.Path:Options->PoseBlueprintJson.FilePath)=Selected;
                         Invalidate(true);
-                        ShowReport(LOCTEXT("PsaReady","Choose abpp.json and its POSE folder, then read the groups. PSA animations will be imported automatically.").ToString());
+                        ShowReport((bPhysics?LOCTEXT("Ready","Choose a JSON export and read its groups. The target follows this editor's preview mesh."):
+                            LOCTEXT("PsaReady","Choose abpp.json and its POSE folder, then read the groups. PSA animations will be imported automatically.")).ToString());
                     }
                     return FReply::Handled();
                 })]
@@ -127,7 +135,20 @@ void SFModelRestorePanel::BuildPoseFileOptions(const TSharedRef<SVerticalBox>& F
                 .ToolTipText_Lambda([GetPath]{return FText::FromString(FPaths::ConvertRelativePathToFull(GetPath()));})]];
     }
     Form->AddSlot().AutoHeight().Padding(0,8)[SNew(STextBlock).AutoWrapText(true)
-        .Text(LOCTEXT("PsaOutputHelp","Animations and Pose Assets are saved in the POSE folder beside this blueprint. Existing assets are kept; new imports receive unique names."))];
+        .Text(bPhysics?LOCTEXT("PhysicsSourceHelp","Choose Phy.json from any folder. Bone references are checked against the current preview mesh; no FModel folder or Skeleton JSON is required."):
+            LOCTEXT("PsaOutputHelp","Animations and Pose Assets are saved in the POSE folder beside this blueprint. Existing assets are kept; new imports receive unique names."))];
+}
+
+void SFModelRestorePanel::BuildPhysicsRow(const TSharedRef<FRow>& Row)
+{
+    GroupList->AddSlot().AutoHeight().Padding(0,4)[SNew(SBorder).BorderImage(FAppStyle::GetBrush("ToolPanel.GroupBorder")).Padding(8)
+        [SNew(SVerticalBox)
+            +SVerticalBox::Slot().AutoHeight()[SNew(SCheckBox)
+                .IsChecked_Lambda([Row]{return Row->bSelected?ECheckBoxState::Checked:ECheckBoxState::Unchecked;})
+                .OnCheckStateChanged_Lambda([this,Row](ECheckBoxState State){Row->bSelected=State==ECheckBoxState::Checked;Invalidate(false);})
+                [SNew(STextBlock).AutoWrapText(true).Text(FText::Format(LOCTEXT("PhysicsRootBone","Root bone: {0}"),FText::FromString(Row->Group.Bones)))]]
+            +SVerticalBox::Slot().AutoHeight().Padding(22,4,0,4)[SNew(STextBlock).AutoWrapText(true)
+                .Text(FText::Format(LOCTEXT("PhysicsSourceNode","Source node: {0}"),FText::FromString(Row->Group.Id)))]]];
 }
 
 void SFModelRestorePanel::BuildPoseRow(const TSharedRef<FRow>& Row)

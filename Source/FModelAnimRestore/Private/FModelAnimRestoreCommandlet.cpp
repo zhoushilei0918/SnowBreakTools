@@ -18,7 +18,6 @@ int32 UFModelAnimRestoreCommandlet::Main(const FString& Params)
     FParse::Value(*Params,TEXT("Abpp="),O->PoseBlueprintJson.FilePath);
     FParse::Value(*Params,TEXT("PoseFolder="),O->PoseDirectory.Path);
     FParse::Value(*Params,TEXT("Physics="),O->PhysicsBlueprintJson.FilePath);
-    FParse::Value(*Params,TEXT("ExportContent="),O->ExportContentDirectory.Path);
     FParse::Value(*Params,TEXT("Destination="),O->Destination);
     FParse::Value(*Params,TEXT("Report="),Output);
     O->TargetMesh=LoadObject<USkeletalMesh>(nullptr,*Mesh);

@@ -33,24 +33,6 @@
           }
         },
         {
-          "Key": "BadParent",
-          "Source": {
-            "Text": "The source Skeleton has an invalid parent index."
-          },
-          "Translation": {
-            "Text": "The source Skeleton has an invalid parent index."
-          }
-        },
-        {
-          "Key": "BadReference",
-          "Source": {
-            "Text": "Cannot resolve exported reference: "
-          },
-          "Translation": {
-            "Text": "Cannot resolve exported reference: "
-          }
-        },
-        {
           "Key": "BlueprintCreateFailed",
           "Source": {
             "Text": "Failed to create an Animation Blueprint."
@@ -96,21 +78,12 @@
           }
         },
         {
-          "Key": "ChooseContent",
+          "Key": "ChoosePhysicsJson",
           "Source": {
-            "Text": "Choose the exported Game/Content folder"
+            "Text": "Choose the character's physics Animation Blueprint JSON exported by FModel."
           },
           "Translation": {
-            "Text": "Choose the exported Game/Content folder"
-          }
-        },
-        {
-          "Key": "ChooseJson",
-          "Source": {
-            "Text": "Choose a FModel JSON export"
-          },
-          "Translation": {
-            "Text": "Choose a FModel JSON export"
+            "Text": "Choose the character's physics Animation Blueprint JSON exported by FModel."
           }
         },
         {
@@ -138,24 +111,6 @@
           },
           "Translation": {
             "Text": "{0} compiled with {1} warnings. Check the Output Log."
-          }
-        },
-        {
-          "Key": "ContentNotFound",
-          "Source": {
-            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
-          },
-          "Translation": {
-            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
-          }
-        },
-        {
-          "Key": "ContentRoot",
-          "Source": {
-            "Text": "FModel Game/Content folder (blank = automatic)"
-          },
-          "Translation": {
-            "Text": "FModel Game/Content folder (blank = automatic)"
           }
         },
         {
@@ -249,30 +204,12 @@
           }
         },
         {
-          "Key": "GroupDetail",
-          "Source": {
-            "Text": "Source node: {0}\nPose samples: {1}"
-          },
-          "Translation": {
-            "Text": "Source node: {0}\nPose samples: {1}"
-          }
-        },
-        {
           "Key": "GroupsRead",
           "Source": {
             "Text": "Found {0} groups. Select one or more groups to import."
           },
           "Translation": {
             "Text": "Found {0} groups. Select one or more groups to import."
-          }
-        },
-        {
-          "Key": "HierarchyMismatch",
-          "Source": {
-            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
-          },
-          "Translation": {
-            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
           }
         },
         {
@@ -510,24 +447,6 @@
           }
         },
         {
-          "Key": "NoPreviewMesh",
-          "Source": {
-            "Text": "Set a preview mesh in this Animation Blueprint first."
-          },
-          "Translation": {
-            "Text": "Set a preview mesh in this Animation Blueprint first."
-          }
-        },
-        {
-          "Key": "NoReferenceSkeleton",
-          "Source": {
-            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
-          },
-          "Translation": {
-            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
-          }
-        },
-        {
           "Key": "NodesAdded",
           "Source": {
             "Text": "Added {0} nodes to {1}. Connect the new chain to your pose flow, then compile and save. Ctrl+Z undoes this insertion."
@@ -588,6 +507,33 @@
           },
           "Translation": {
             "Text": "Physics blueprint JSON"
+          }
+        },
+        {
+          "Key": "PhysicsRootBone",
+          "Source": {
+            "Text": "Root bone: {0}"
+          },
+          "Translation": {
+            "Text": "Root bone: {0}"
+          }
+        },
+        {
+          "Key": "PhysicsSourceHelp",
+          "Source": {
+            "Text": "Choose Phy.json from any folder. Bone references are checked against the current preview mesh; no FModel folder or Skeleton JSON is required."
+          },
+          "Translation": {
+            "Text": "Choose Phy.json from any folder. Bone references are checked against the current preview mesh; no FModel folder or Skeleton JSON is required."
+          }
+        },
+        {
+          "Key": "PhysicsSourceNode",
+          "Source": {
+            "Text": "Source node: {0}"
+          },
+          "Translation": {
+            "Text": "Source node: {0}"
           }
         },
         {
@@ -834,15 +780,6 @@
           }
         },
         {
-          "Key": "RootMismatch",
-          "Source": {
-            "Text": "The mesh root bone differs from the source Skeleton."
-          },
-          "Translation": {
-            "Text": "The mesh root bone differs from the source Skeleton."
-          }
-        },
-        {
           "Key": "SaveFailed",
           "Source": {
             "Text": "Failed to save: "
@@ -888,6 +825,15 @@
           }
         },
         {
+          "Key": "SelectPhysicsJson",
+          "Source": {
+            "Text": "Choose physics blueprint JSON..."
+          },
+          "Translation": {
+            "Text": "Choose physics blueprint JSON..."
+          }
+        },
+        {
           "Key": "SelectPoseFolder",
           "Source": {
             "Text": "Choose POSE folder..."
@@ -908,10 +854,10 @@
         {
           "Key": "SetPostProcessButton",
           "Source": {
-            "Text": "Set as mesh Post Process Anim Blueprint"
+            "Text": "(Optional) 3. Set as mesh Post Process Anim Blueprint"
           },
           "Translation": {
-            "Text": "Set as mesh Post Process Anim Blueprint"
+            "Text": "(Optional) 3. Set as mesh Post Process Anim Blueprint"
           }
         },
         {

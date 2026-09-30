@@ -30,10 +30,11 @@ private:
     TSharedPtr<SMultiLineEditableTextBox> Output;
     TSharedPtr<FAssetThumbnailPool> ThumbnailPool;
     TWeakObjectPtr<UEdGraph> SelectedGraph;
-    bool bPoseNeedsRead = false;
-    void BuildPoseContext(const TSharedRef<SVerticalBox>& Form);
-    void BuildPoseFileOptions(const TSharedRef<SVerticalBox>& Form);
+    bool bNeedsRead = false;
+    void BuildContext(const TSharedRef<SVerticalBox>& Form);
+    void BuildFileOptions(const TSharedRef<SVerticalBox>& Form);
     void BuildPoseRow(const TSharedRef<FRow>& Row);
+    void BuildPhysicsRow(const TSharedRef<FRow>& Row);
     TSharedRef<SWidget> GraphMenu();
     UAnimBlueprint* Blueprint() const;
     USkeletalMesh* Mesh() const;

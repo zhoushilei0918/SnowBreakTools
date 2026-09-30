@@ -33,24 +33,6 @@
           }
         },
         {
-          "Key": "BadParent",
-          "Source": {
-            "Text": "The source Skeleton has an invalid parent index."
-          },
-          "Translation": {
-            "Text": "源 Skeleton 父级索引无效。"
-          }
-        },
-        {
-          "Key": "BadReference",
-          "Source": {
-            "Text": "Cannot resolve exported reference: "
-          },
-          "Translation": {
-            "Text": "无法解析导出引用: "
-          }
-        },
-        {
           "Key": "BlueprintCreateFailed",
           "Source": {
             "Text": "Failed to create an Animation Blueprint."
@@ -96,21 +78,12 @@
           }
         },
         {
-          "Key": "ChooseContent",
+          "Key": "ChoosePhysicsJson",
           "Source": {
-            "Text": "Choose the exported Game/Content folder"
+            "Text": "Choose the character's physics Animation Blueprint JSON exported by FModel."
           },
           "Translation": {
-            "Text": "选择导出的 Game/Content 目录"
-          }
-        },
-        {
-          "Key": "ChooseJson",
-          "Source": {
-            "Text": "Choose a FModel JSON export"
-          },
-          "Translation": {
-            "Text": "选择 FModel 导出的 JSON"
+            "Text": "选择 FModel 导出的角色物理动画蓝图 JSON。"
           }
         },
         {
@@ -138,24 +111,6 @@
           },
           "Translation": {
             "Text": "{0} 编译有 {1} 条警告，请查看 Output Log。"
-          }
-        },
-        {
-          "Key": "ContentNotFound",
-          "Source": {
-            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
-          },
-          "Translation": {
-            "Text": "无法定位 FModel 的 Game/Content 目录，请手动指定。"
-          }
-        },
-        {
-          "Key": "ContentRoot",
-          "Source": {
-            "Text": "FModel Game/Content folder (blank = automatic)"
-          },
-          "Translation": {
-            "Text": "FModel 的 Game/Content 目录（留空自动识别）"
           }
         },
         {
@@ -249,30 +204,12 @@
           }
         },
         {
-          "Key": "GroupDetail",
-          "Source": {
-            "Text": "Source node: {0}\nPose samples: {1}"
-          },
-          "Translation": {
-            "Text": "来源节点：{0}\n姿态样本：{1}"
-          }
-        },
-        {
           "Key": "GroupsRead",
           "Source": {
             "Text": "Found {0} groups. Select one or more groups to import."
           },
           "Translation": {
             "Text": "找到 {0} 组。请选择一组或多组进行导入。"
-          }
-        },
-        {
-          "Key": "HierarchyMismatch",
-          "Source": {
-            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
-          },
-          "Translation": {
-            "Text": "骨架层级不兼容：{0}，源父级 {1}，目标父级 {2}。请使用匹配版本的模型。"
           }
         },
         {
@@ -510,24 +447,6 @@
           }
         },
         {
-          "Key": "NoPreviewMesh",
-          "Source": {
-            "Text": "Set a preview mesh in this Animation Blueprint first."
-          },
-          "Translation": {
-            "Text": "请先在此动画蓝图中设置预览网格体。"
-          }
-        },
-        {
-          "Key": "NoReferenceSkeleton",
-          "Source": {
-            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
-          },
-          "Translation": {
-            "Text": "Skeleton.json 缺少 ReferenceSkeleton: "
-          }
-        },
-        {
           "Key": "NodesAdded",
           "Source": {
             "Text": "Added {0} nodes to {1}. Connect the new chain to your pose flow, then compile and save. Ctrl+Z undoes this insertion."
@@ -588,6 +507,33 @@
           },
           "Translation": {
             "Text": "物理蓝图 JSON"
+          }
+        },
+        {
+          "Key": "PhysicsRootBone",
+          "Source": {
+            "Text": "Root bone: {0}"
+          },
+          "Translation": {
+            "Text": "根骨骼：{0}"
+          }
+        },
+        {
+          "Key": "PhysicsSourceHelp",
+          "Source": {
+            "Text": "Choose Phy.json from any folder. Bone references are checked against the current preview mesh; no FModel folder or Skeleton JSON is required."
+          },
+          "Translation": {
+            "Text": "选择任意目录中的 Phy.json 即可。使用当前预览模型校验所需骨骼，不需要 FModel 目录或 Skeleton JSON。"
+          }
+        },
+        {
+          "Key": "PhysicsSourceNode",
+          "Source": {
+            "Text": "Source node: {0}"
+          },
+          "Translation": {
+            "Text": "来源节点：{0}"
           }
         },
         {
@@ -834,15 +780,6 @@
           }
         },
         {
-          "Key": "RootMismatch",
-          "Source": {
-            "Text": "The mesh root bone differs from the source Skeleton."
-          },
-          "Translation": {
-            "Text": "模型根骨骼与原 Skeleton 不同。"
-          }
-        },
-        {
           "Key": "SaveFailed",
           "Source": {
             "Text": "Failed to save: "
@@ -888,6 +825,15 @@
           }
         },
         {
+          "Key": "SelectPhysicsJson",
+          "Source": {
+            "Text": "Choose physics blueprint JSON..."
+          },
+          "Translation": {
+            "Text": "选择物理蓝图 JSON…"
+          }
+        },
+        {
           "Key": "SelectPoseFolder",
           "Source": {
             "Text": "Choose POSE folder..."
@@ -908,10 +854,10 @@
         {
           "Key": "SetPostProcessButton",
           "Source": {
-            "Text": "Set as mesh Post Process Anim Blueprint"
+            "Text": "(Optional) 3. Set as mesh Post Process Anim Blueprint"
           },
           "Translation": {
-            "Text": "设为网格体后处理动画蓝图"
+            "Text": "（可选）3. 设为网格体后处理动画蓝图"
           }
         },
         {
