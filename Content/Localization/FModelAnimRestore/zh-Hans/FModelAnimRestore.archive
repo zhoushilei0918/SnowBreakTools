@@ -1,0 +1,1019 @@
+{
+  "FormatVersion": 2,
+  "Namespace": "",
+  "Subnamespaces": [
+    {
+      "Namespace": "FModelAnimRestore",
+      "Children": [
+        {
+          "Key": "AddNodes",
+          "Source": {
+            "Text": "2. Add nodes to this blueprint"
+          },
+          "Translation": {
+            "Text": "2. 添加节点到当前蓝图"
+          }
+        },
+        {
+          "Key": "AddTransaction",
+          "Source": {
+            "Text": "Add FModel animation nodes"
+          },
+          "Translation": {
+            "Text": "添加 FModel 动画节点"
+          }
+        },
+        {
+          "Key": "AnimationSkeletonMismatch",
+          "Source": {
+            "Text": "The preview animation must use the same Skeleton as the target mesh."
+          },
+          "Translation": {
+            "Text": "参考动作必须使用目标模型的同一个 Skeleton。"
+          }
+        },
+        {
+          "Key": "BadParent",
+          "Source": {
+            "Text": "The source Skeleton has an invalid parent index."
+          },
+          "Translation": {
+            "Text": "源 Skeleton 父级索引无效。"
+          }
+        },
+        {
+          "Key": "BadReference",
+          "Source": {
+            "Text": "Cannot resolve exported reference: "
+          },
+          "Translation": {
+            "Text": "无法解析导出引用: "
+          }
+        },
+        {
+          "Key": "BlueprintCreateFailed",
+          "Source": {
+            "Text": "Failed to create an Animation Blueprint."
+          },
+          "Translation": {
+            "Text": "无法创建动画蓝图。"
+          }
+        },
+        {
+          "Key": "BlueprintSkeletonMismatch",
+          "Source": {
+            "Text": "The current Animation Blueprint and preview mesh must use the same Skeleton."
+          },
+          "Translation": {
+            "Text": "当前动画蓝图与预览网格体必须使用同一个 Skeleton。"
+          }
+        },
+        {
+          "Key": "CannotPaste",
+          "Source": {
+            "Text": "The prepared nodes cannot be added to this graph."
+          },
+          "Translation": {
+            "Text": "准备好的节点无法添加到此图表。"
+          }
+        },
+        {
+          "Key": "CannotReadJson",
+          "Source": {
+            "Text": "Cannot read JSON: "
+          },
+          "Translation": {
+            "Text": "无法读取 JSON: "
+          }
+        },
+        {
+          "Key": "ChooseAbpp",
+          "Source": {
+            "Text": "Choose the character's abpp.json file."
+          },
+          "Translation": {
+            "Text": "选择角色的 abpp.json 文件。"
+          }
+        },
+        {
+          "Key": "ChooseContent",
+          "Source": {
+            "Text": "Choose the exported Game/Content folder"
+          },
+          "Translation": {
+            "Text": "选择导出的 Game/Content 目录"
+          }
+        },
+        {
+          "Key": "ChooseJson",
+          "Source": {
+            "Text": "Choose a FModel JSON export"
+          },
+          "Translation": {
+            "Text": "选择 FModel 导出的 JSON"
+          }
+        },
+        {
+          "Key": "ChoosePoseFolder",
+          "Source": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          },
+          "Translation": {
+            "Text": "选择包含 POSE PSA 和 PoseAsset JSON 文件的文件夹。"
+          }
+        },
+        {
+          "Key": "CompileFailed",
+          "Source": {
+            "Text": "The generated graph failed to compile. Check the Output Log."
+          },
+          "Translation": {
+            "Text": "生成的动画蓝图编译失败，请查看 Output Log。"
+          }
+        },
+        {
+          "Key": "CompileWarnings",
+          "Source": {
+            "Text": "{0} compiled with {1} warnings. Check the Output Log."
+          },
+          "Translation": {
+            "Text": "{0} 编译有 {1} 条警告，请查看 Output Log。"
+          }
+        },
+        {
+          "Key": "ContentNotFound",
+          "Source": {
+            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
+          },
+          "Translation": {
+            "Text": "无法定位 FModel 的 Game/Content 目录，请手动指定。"
+          }
+        },
+        {
+          "Key": "ContentRoot",
+          "Source": {
+            "Text": "FModel Game/Content folder (blank = automatic)"
+          },
+          "Translation": {
+            "Text": "FModel 的 Game/Content 目录（留空自动识别）"
+          }
+        },
+        {
+          "Key": "ContextChanged",
+          "Source": {
+            "Text": "The blueprint or preview mesh has changed. Prepare the import again in this blueprint's panel."
+          },
+          "Translation": {
+            "Text": "蓝图或预览网格体已改变，请在此蓝图的面板中重新准备导入。"
+          }
+        },
+        {
+          "Key": "CreatedPoseAsset",
+          "Source": {
+            "Text": "Created Pose Asset"
+          },
+          "Translation": {
+            "Text": "生成的 Pose Asset"
+          }
+        },
+        {
+          "Key": "CurrentBlueprint",
+          "Source": {
+            "Text": "Current blueprint"
+          },
+          "Translation": {
+            "Text": "当前动画蓝图"
+          }
+        },
+        {
+          "Key": "DriveCurvesUnsupported",
+          "Source": {
+            "Text": "DrivePoses is supported; DriveCurves is not: "
+          },
+          "Translation": {
+            "Text": "当前支持 DrivePoses，不支持 DriveCurves: "
+          }
+        },
+        {
+          "Key": "DuplicateOutputPath",
+          "Source": {
+            "Text": "Two outputs use the same asset path: "
+          },
+          "Translation": {
+            "Text": "两个输出使用了同一个资产路径："
+          }
+        },
+        {
+          "Key": "DuplicatePoseName",
+          "Source": {
+            "Text": "A pose name is empty or duplicated: "
+          },
+          "Translation": {
+            "Text": "Pose 名称为空或重复: "
+          }
+        },
+        {
+          "Key": "EmptyFragment",
+          "Source": {
+            "Text": "No nodes could be prepared for import."
+          },
+          "Translation": {
+            "Text": "没有可供导入的节点。"
+          }
+        },
+        {
+          "Key": "ExistingPostProcess",
+          "Source": {
+            "Text": "The mesh already has a Post Process Anim Blueprint. Disable assignment and merge the result manually."
+          },
+          "Translation": {
+            "Text": "模型已有 Post Process Anim Blueprint；取消自动挂载后生成，再自行合并，避免覆盖。"
+          }
+        },
+        {
+          "Key": "ExpectedArray",
+          "Source": {
+            "Text": "Expected an exported FModel JSON array: "
+          },
+          "Translation": {
+            "Text": "需要 FModel 导出的 JSON 数组: "
+          }
+        },
+        {
+          "Key": "GroupCount",
+          "Source": {
+            "Text": "Groups: {0} selected / {1} total"
+          },
+          "Translation": {
+            "Text": "分组：已选择 {0} / 共 {1} 组"
+          }
+        },
+        {
+          "Key": "GroupDetail",
+          "Source": {
+            "Text": "Source node: {0}\nPose samples: {1}"
+          },
+          "Translation": {
+            "Text": "来源节点：{0}\n姿态样本：{1}"
+          }
+        },
+        {
+          "Key": "GroupsRead",
+          "Source": {
+            "Text": "Found {0} groups. Select one or more groups to import."
+          },
+          "Translation": {
+            "Text": "找到 {0} 组。请选择一组或多组进行导入。"
+          }
+        },
+        {
+          "Key": "HierarchyMismatch",
+          "Source": {
+            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
+          },
+          "Translation": {
+            "Text": "骨架层级不兼容：{0}，源父级 {1}，目标父级 {2}。请使用匹配版本的模型。"
+          }
+        },
+        {
+          "Key": "ImportPsaPoses",
+          "Source": {
+            "Text": "1. Import animations and create Pose Assets"
+          },
+          "Translation": {
+            "Text": "1. 导入动画并创建 Pose Asset"
+          }
+        },
+        {
+          "Key": "ImportedPsa",
+          "Source": {
+            "Text": "Imported animation"
+          },
+          "Translation": {
+            "Text": "导入的动画"
+          }
+        },
+        {
+          "Key": "IncompletePaste",
+          "Source": {
+            "Text": "Node import was incomplete. The added nodes were removed."
+          },
+          "Translation": {
+            "Text": "节点导入不完整，已移除本次添加的节点。"
+          }
+        },
+        {
+          "Key": "InertializationNote",
+          "Source": {
+            "Text": "Inertialization and state-transition logic are outside static physics import and were not copied."
+          },
+          "Translation": {
+            "Text": "物理蓝图的 Inertialization 不属于静态物理配置；还原链未复制状态切换逻辑。"
+          }
+        },
+        {
+          "Key": "InputNotFound",
+          "Source": {
+            "Text": "Cannot follow Root LinkIDs to the input pose: "
+          },
+          "Translation": {
+            "Text": "无法从 Root 的 LinkID 还原到输入姿态: "
+          }
+        },
+        {
+          "Key": "InvalidAssetPackage",
+          "Source": {
+            "Text": "Enter a full asset package path without an extension, for example /Game/Character/POSE/MyPose: "
+          },
+          "Translation": {
+            "Text": "请输入完整的资产包路径，不含扩展名，例如 /Game/Character/POSE/MyPose："
+          }
+        },
+        {
+          "Key": "InvalidDestination",
+          "Source": {
+            "Text": "The output folder must be a valid /Game/... path."
+          },
+          "Translation": {
+            "Text": "输出目录必须是 /Game/...。"
+          }
+        },
+        {
+          "Key": "InvalidPhysicsArray",
+          "Source": {
+            "Text": "Invalid physics array format: "
+          },
+          "Translation": {
+            "Text": "物理配置数组格式错误: "
+          }
+        },
+        {
+          "Key": "InvalidPoseReference",
+          "Source": {
+            "Text": "The abpp contains an invalid Pose Asset name."
+          },
+          "Translation": {
+            "Text": "abpp 中的 Pose Asset 名称无效。"
+          }
+        },
+        {
+          "Key": "KawaiiClassMissing",
+          "Source": {
+            "Text": "Cannot load the KawaiiPhysicsEd node class."
+          },
+          "Translation": {
+            "Text": "无法加载 KawaiiPhysicsEd 节点。"
+          }
+        },
+        {
+          "Key": "LinkCycle",
+          "Source": {
+            "Text": "A cycle was found in blueprint LinkIDs: "
+          },
+          "Translation": {
+            "Text": "蓝图 LinkID 存在循环: "
+          }
+        },
+        {
+          "Key": "LinkFailed",
+          "Source": {
+            "Text": "Failed to connect pose pins: "
+          },
+          "Translation": {
+            "Text": "节点姿态连接失败: "
+          }
+        },
+        {
+          "Key": "MeshChanged",
+          "Source": {
+            "Text": "The preview mesh changed. Read the groups again to validate them against the new mesh."
+          },
+          "Translation": {
+            "Text": "预览网格体已改变，请重新读取分组以校验新网格体。"
+          }
+        },
+        {
+          "Key": "MissingBone",
+          "Source": {
+            "Text": " references a missing bone: "
+          },
+          "Translation": {
+            "Text": " 的骨骼不存在: "
+          }
+        },
+        {
+          "Key": "MissingJsonObject",
+          "Source": {
+            "Text": "Missing JSON object: "
+          },
+          "Translation": {
+            "Text": "JSON 对象缺失: "
+          }
+        },
+        {
+          "Key": "MissingOptions",
+          "Source": {
+            "Text": "Import options are missing."
+          },
+          "Translation": {
+            "Text": "缺少导入设置。"
+          }
+        },
+        {
+          "Key": "NeedAnimGraph",
+          "Source": {
+            "Text": "Open an editable animation graph in the current Animation Blueprint."
+          },
+          "Translation": {
+            "Text": "请打开当前动画蓝图中可编辑的动画图表。"
+          }
+        },
+        {
+          "Key": "NeedJson",
+          "Source": {
+            "Text": "Choose a pose or physics blueprint JSON."
+          },
+          "Translation": {
+            "Text": "至少选择一份补偿或物理蓝图 JSON。"
+          }
+        },
+        {
+          "Key": "NeedMesh",
+          "Source": {
+            "Text": "A mesh with a Skeleton is required."
+          },
+          "Translation": {
+            "Text": "请选择已导入且有 Skeleton 的模型。"
+          }
+        },
+        {
+          "Key": "NeedPoseFolder",
+          "Source": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          },
+          "Translation": {
+            "Text": "请选择包含 POSE PSA 和 PoseAsset JSON 文件的文件夹。"
+          }
+        },
+        {
+          "Key": "NoAnimGraph",
+          "Source": {
+            "Text": "The new blueprint has no AnimGraph."
+          },
+          "Translation": {
+            "Text": "新蓝图缺少 AnimGraph。"
+          }
+        },
+        {
+          "Key": "NoDefaults",
+          "Source": {
+            "Text": "JSON is missing its generated class or Default__ settings: "
+          },
+          "Translation": {
+            "Text": "JSON 缺少生成类或 Default__ 配置: "
+          }
+        },
+        {
+          "Key": "NoNodeDefaults",
+          "Source": {
+            "Text": "Node default data is missing: "
+          },
+          "Translation": {
+            "Text": "节点缺少默认数据: "
+          }
+        },
+        {
+          "Key": "NoOutputPose",
+          "Source": {
+            "Text": "The new blueprint has no Output Pose."
+          },
+          "Translation": {
+            "Text": "新蓝图缺少 Output Pose。"
+          }
+        },
+        {
+          "Key": "NoPoseNames",
+          "Source": {
+            "Text": "The Pose Asset JSON has no pose names: "
+          },
+          "Translation": {
+            "Text": "Pose Asset JSON 中没有姿态名称："
+          }
+        },
+        {
+          "Key": "NoPoseTargets",
+          "Source": {
+            "Text": "Pose Driver is missing SourceBones or Targets."
+          },
+          "Translation": {
+            "Text": "Pose Driver 缺少 SourceBones 或 Targets。"
+          }
+        },
+        {
+          "Key": "NoPreviewMesh",
+          "Source": {
+            "Text": "Set a preview mesh in this Animation Blueprint first."
+          },
+          "Translation": {
+            "Text": "请先在此动画蓝图中设置预览网格体。"
+          }
+        },
+        {
+          "Key": "NoReferenceSkeleton",
+          "Source": {
+            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
+          },
+          "Translation": {
+            "Text": "Skeleton.json 缺少 ReferenceSkeleton: "
+          }
+        },
+        {
+          "Key": "NodesAdded",
+          "Source": {
+            "Text": "Added {0} nodes to {1}. Connect the new chain to your pose flow, then compile and save. Ctrl+Z undoes this insertion."
+          },
+          "Translation": {
+            "Text": "已向 {1} 添加 {0} 个节点。请接入姿态链，然后编译并保存。Ctrl+Z 可撤销本次添加。"
+          }
+        },
+        {
+          "Key": "OpenPoseFolder",
+          "Source": {
+            "Text": "Open the POSE folder in File Explorer"
+          },
+          "Translation": {
+            "Text": "在资源管理器中打开 POSE 文件夹"
+          }
+        },
+        {
+          "Key": "OpenTargetGraph",
+          "Source": {
+            "Text": "Open this graph"
+          },
+          "Translation": {
+            "Text": "打开此图表"
+          }
+        },
+        {
+          "Key": "OutputExists",
+          "Source": {
+            "Text": "An output asset already exists. Choose a new output folder: "
+          },
+          "Translation": {
+            "Text": "输出资产已存在，请换一个输出目录（不会覆盖）: "
+          }
+        },
+        {
+          "Key": "PhysicsButton",
+          "Source": {
+            "Text": "Kawaii Import"
+          },
+          "Translation": {
+            "Text": "物理导入"
+          }
+        },
+        {
+          "Key": "PhysicsHelp",
+          "Source": {
+            "Text": "Read a physics blueprint JSON, prepare the selected Kawaii Physics groups, then add them to this Animation Blueprint."
+          },
+          "Translation": {
+            "Text": "读取物理蓝图 JSON，准备所选的 Kawaii Physics 组，然后添加到当前动画蓝图。"
+          }
+        },
+        {
+          "Key": "PhysicsJson",
+          "Source": {
+            "Text": "Physics blueprint JSON"
+          },
+          "Translation": {
+            "Text": "物理蓝图 JSON"
+          }
+        },
+        {
+          "Key": "PhysicsTitle",
+          "Source": {
+            "Text": "Import Kawaii Physics"
+          },
+          "Translation": {
+            "Text": "导入 Kawaii Physics"
+          }
+        },
+        {
+          "Key": "PoseButton",
+          "Source": {
+            "Text": "Pose Import"
+          },
+          "Translation": {
+            "Text": "补偿导入"
+          }
+        },
+        {
+          "Key": "PoseFolder",
+          "Source": {
+            "Text": "POSE folder"
+          },
+          "Translation": {
+            "Text": "POSE 文件夹"
+          }
+        },
+        {
+          "Key": "PoseJson",
+          "Source": {
+            "Text": "Pose blueprint JSON (abpp)"
+          },
+          "Translation": {
+            "Text": "补偿蓝图 JSON（abpp）"
+          }
+        },
+        {
+          "Key": "PoseNamesChanged",
+          "Source": {
+            "Text": "Generated pose names differ from the source: "
+          },
+          "Translation": {
+            "Text": "生成的 Pose 名称与源数据不同: "
+          }
+        },
+        {
+          "Key": "PoseTitle",
+          "Source": {
+            "Text": "Import Pose Drivers / Pose Assets"
+          },
+          "Translation": {
+            "Text": "导入 Pose Driver / Pose Asset"
+          }
+        },
+        {
+          "Key": "PostProcessAlreadySet",
+          "Source": {
+            "Text": "This blueprint is already the mesh's Post Process Anim Blueprint."
+          },
+          "Translation": {
+            "Text": "当前蓝图已经是该网格体的后处理动画蓝图。"
+          }
+        },
+        {
+          "Key": "PostProcessCompileFailed",
+          "Source": {
+            "Text": "The blueprint could not be compiled. Fix its errors before assigning it as a Post Process Anim Blueprint."
+          },
+          "Translation": {
+            "Text": "蓝图编译失败，请先修复编译错误，再设置为后处理动画蓝图。"
+          }
+        },
+        {
+          "Key": "PostProcessSet",
+          "Source": {
+            "Text": "Set {0} as the Post Process Anim Blueprint for {1}. Save the mesh to keep this change. Ctrl+Z restores the previous assignment."
+          },
+          "Translation": {
+            "Text": "已将 {0} 设为 {1} 的后处理动画蓝图。请保存网格体以保留设置；Ctrl+Z 可恢复原设置。"
+          }
+        },
+        {
+          "Key": "PreparePhysics",
+          "Source": {
+            "Text": "1. Prepare selected physics groups"
+          },
+          "Translation": {
+            "Text": "1. 准备所选物理组"
+          }
+        },
+        {
+          "Key": "Prepared",
+          "Source": {
+            "Text": "Ready. Use 'Add nodes to this blueprint' to insert the selected groups."
+          },
+          "Translation": {
+            "Text": "准备完成。点击“添加节点到当前蓝图”插入所选分组。"
+          }
+        },
+        {
+          "Key": "PreparedCounts",
+          "Source": {
+            "Text": "Prepared {0} Pose Drivers and {1} Kawaii Physics nodes.\nFolder: {2}\n"
+          },
+          "Translation": {
+            "Text": "已准备 {0} 个 Pose Driver、{1} 个 Kawaii Physics 节点。\n目录：{2}\n"
+          }
+        },
+        {
+          "Key": "Preparing",
+          "Source": {
+            "Text": "Preparing FModel animation groups..."
+          },
+          "Translation": {
+            "Text": "正在准备 FModel 动画分组…"
+          }
+        },
+        {
+          "Key": "PreviewMesh",
+          "Source": {
+            "Text": "Preview mesh (read only)"
+          },
+          "Translation": {
+            "Text": "预览网格体（只读）"
+          }
+        },
+        {
+          "Key": "PsaAdditiveUnsupported",
+          "Source": {
+            "Text": "Additive Pose Assets are not supported by this PSA import: "
+          },
+          "Translation": {
+            "Text": "此 PSA 导入流程暂不支持 Additive Pose Asset："
+          }
+        },
+        {
+          "Key": "PsaImportCount",
+          "Source": {
+            "Text": "Expected one imported animation for each compensation group."
+          },
+          "Translation": {
+            "Text": "每组补偿应导入一段动画。"
+          }
+        },
+        {
+          "Key": "PsaOutputHelp",
+          "Source": {
+            "Text": "Animations and Pose Assets are saved in the POSE folder beside this blueprint. Existing assets are kept; new imports receive unique names."
+          },
+          "Translation": {
+            "Text": "动画和 Pose Asset 保存在当前蓝图旁的 POSE 文件夹中。再次导入会自动使用新名称，保留已有资产。"
+          }
+        },
+        {
+          "Key": "PsaPoseCount",
+          "Source": {
+            "Text": "{0} must contain one animation with {1} sampled poses matching the Pose Asset JSON."
+          },
+          "Translation": {
+            "Text": "{0} 必须包含一段动画，并具有与 Pose Asset JSON 对应的 {1} 个姿态采样。"
+          }
+        },
+        {
+          "Key": "PsaPoseHelp",
+          "Source": {
+            "Text": "Choose abpp.json and the POSE folder. Import the selected PSA animations, create Pose Assets, then add their Pose Drivers to this blueprint."
+          },
+          "Translation": {
+            "Text": "选择 abpp.json 和 POSE 文件夹，导入所选 PSA 动画并创建 Pose Asset，再将对应的 Pose Driver 添加到当前蓝图。"
+          }
+        },
+        {
+          "Key": "PsaPrepared",
+          "Source": {
+            "Text": "Imported {0} PSA animations and created {0} Pose Assets. Ready to add Pose Drivers."
+          },
+          "Translation": {
+            "Text": "已导入 {0} 段 PSA 动画并创建 {0} 个 Pose Asset，可以添加 Pose Driver。"
+          }
+        },
+        {
+          "Key": "PsaReady",
+          "Source": {
+            "Text": "Choose abpp.json and its POSE folder, then read the groups. PSA animations will be imported automatically."
+          },
+          "Translation": {
+            "Text": "选择 abpp.json 和 POSE 文件夹后读取分组，PSA 动画会由插件自动导入。"
+          }
+        },
+        {
+          "Key": "PsaRequiredBone",
+          "Source": {
+            "Text": "The PSA is missing a required compensation bone: "
+          },
+          "Translation": {
+            "Text": "PSA 中缺少必要的补偿骨骼："
+          }
+        },
+        {
+          "Key": "PsaSourceFiles",
+          "Source": {
+            "Text": "{0} + {1}  ({2} poses)"
+          },
+          "Translation": {
+            "Text": "{0} + {1}（{2} 个姿态）"
+          }
+        },
+        {
+          "Key": "ReadGroups",
+          "Source": {
+            "Text": "Read groups"
+          },
+          "Translation": {
+            "Text": "读取分组"
+          }
+        },
+        {
+          "Key": "Ready",
+          "Source": {
+            "Text": "Choose a JSON export and read its groups. The target follows this editor's preview mesh."
+          },
+          "Translation": {
+            "Text": "请选择 JSON 并读取分组。目标网格体自动跟随此编辑器的预览网格体。"
+          }
+        },
+        {
+          "Key": "ReportPath",
+          "Source": {
+            "Text": "Report: "
+          },
+          "Translation": {
+            "Text": "报告: "
+          }
+        },
+        {
+          "Key": "RevealAbpp",
+          "Source": {
+            "Text": "Show the selected JSON in File Explorer"
+          },
+          "Translation": {
+            "Text": "在资源管理器中定位所选 JSON 文件"
+          }
+        },
+        {
+          "Key": "RootMismatch",
+          "Source": {
+            "Text": "The mesh root bone differs from the source Skeleton."
+          },
+          "Translation": {
+            "Text": "模型根骨骼与原 Skeleton 不同。"
+          }
+        },
+        {
+          "Key": "SaveFailed",
+          "Source": {
+            "Text": "Failed to save: "
+          },
+          "Translation": {
+            "Text": "保存失败: "
+          }
+        },
+        {
+          "Key": "SelectAbpp",
+          "Source": {
+            "Text": "Choose abpp.json..."
+          },
+          "Translation": {
+            "Text": "选择 abpp.json…"
+          }
+        },
+        {
+          "Key": "SelectAll",
+          "Source": {
+            "Text": "Select all"
+          },
+          "Translation": {
+            "Text": "全选"
+          }
+        },
+        {
+          "Key": "SelectGroups",
+          "Source": {
+            "Text": "Select at least one group."
+          },
+          "Translation": {
+            "Text": "请至少选择一组。"
+          }
+        },
+        {
+          "Key": "SelectNone",
+          "Source": {
+            "Text": "Clear selection"
+          },
+          "Translation": {
+            "Text": "清空选择"
+          }
+        },
+        {
+          "Key": "SelectPoseFolder",
+          "Source": {
+            "Text": "Choose POSE folder..."
+          },
+          "Translation": {
+            "Text": "选择 POSE 文件夹…"
+          }
+        },
+        {
+          "Key": "SeparateImports",
+          "Source": {
+            "Text": "Choose exactly one import type: Pose Drivers or Kawaii Physics."
+          },
+          "Translation": {
+            "Text": "每次只选择一种导入类型：Pose Driver 或 Kawaii Physics。"
+          }
+        },
+        {
+          "Key": "SetPostProcessButton",
+          "Source": {
+            "Text": "Set as mesh Post Process Anim Blueprint"
+          },
+          "Translation": {
+            "Text": "设为网格体后处理动画蓝图"
+          }
+        },
+        {
+          "Key": "SetPostProcessHelp",
+          "Source": {
+            "Text": "Compile this blueprint and assign it as the preview mesh's Post Process Anim Blueprint. Supports Undo; save the mesh to keep the change."
+          },
+          "Translation": {
+            "Text": "编译当前蓝图并设置为预览网格体的后处理动画蓝图。支持撤销；保存网格体即可保留设置。"
+          }
+        },
+        {
+          "Key": "SetPostProcessTransaction",
+          "Source": {
+            "Text": "Set mesh Post Process Anim Blueprint"
+          },
+          "Translation": {
+            "Text": "设置网格体后处理动画蓝图"
+          }
+        },
+        {
+          "Key": "StaleSelection",
+          "Source": {
+            "Text": "The selected groups no longer exist. Read the JSON again."
+          },
+          "Translation": {
+            "Text": "所选分组已不存在，请重新读取 JSON。"
+          }
+        },
+        {
+          "Key": "TargetGraph",
+          "Source": {
+            "Text": "Target graph"
+          },
+          "Translation": {
+            "Text": "目标图表"
+          }
+        },
+        {
+          "Key": "TargetMismatch",
+          "Source": {
+            "Text": "PoseTarget does not match the pose name or source-bone count: "
+          },
+          "Translation": {
+            "Text": "PoseTarget 与 Pose 名称或源骨骼数量不匹配: "
+          }
+        },
+        {
+          "Key": "UnexpectedPhysicsNode",
+          "Source": {
+            "Text": "The physics JSON contains an unsupported non-KawaiiPhysics node."
+          },
+          "Translation": {
+            "Text": "物理 JSON 中出现不支持的非 KawaiiPhysics 节点。"
+          }
+        },
+        {
+          "Key": "UnexpectedPoseNode",
+          "Source": {
+            "Text": "The pose JSON contains an unsupported non-PoseDriver node."
+          },
+          "Translation": {
+            "Text": "补偿 JSON 中出现不支持的非 PoseDriver 节点。"
+          }
+        },
+        {
+          "Key": "UnsupportedChain",
+          "Source": {
+            "Text": "The pose chain contains an unsupported node: "
+          },
+          "Translation": {
+            "Text": "主姿态链包含尚不支持的节点，未自动展平: "
+          }
+        },
+        {
+          "Key": "UnsupportedFields",
+          "Source": {
+            "Text": "{0} custom fields have no direct equivalent. Their original values are in the report; the original game physics behavior is not fully reproduced.\n"
+          },
+          "Translation": {
+            "Text": "原游戏 {0} 处定制字段没有直接对应，原值已保存在报告中；不代表原游戏物理逻辑已完整复现。\n"
+          }
+        },
+        {
+          "Key": "WiringHelp",
+          "Source": {
+            "Text": "New groups keep their internal connections and are placed below the existing graph. Connect their input and output to your pose flow. Graph insertion supports Undo; created assets remain in the Content Browser."
+          },
+          "Translation": {
+            "Text": "新节点保留组内连线，放在现有图表下方。请将输入和输出接入自己的姿态链。节点添加可撤销；已创建的资产会保留在内容浏览器中。"
+          }
+        },
+        {
+          "Key": "WrongPoseFile",
+          "Source": {
+            "Text": "Missing or mismatched Pose Asset data: "
+          },
+          "Translation": {
+            "Text": "Pose Asset 数据缺失或不匹配："
+          }
+        }
+      ]
+    }
+  ]
+}

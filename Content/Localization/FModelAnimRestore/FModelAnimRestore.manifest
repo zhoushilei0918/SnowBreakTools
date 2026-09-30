@@ -1,0 +1,1243 @@
+{
+  "FormatVersion": 1,
+  "Namespace": "",
+  "Subnamespaces": [
+    {
+      "Namespace": "FModelAnimRestore",
+      "Children": [
+        {
+          "Source": {
+            "Text": "2. Add nodes to this blueprint"
+          },
+          "Keys": [
+            {
+              "Key": "AddNodes",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Add FModel animation nodes"
+          },
+          "Keys": [
+            {
+              "Key": "AddTransaction",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The preview animation must use the same Skeleton as the target mesh."
+          },
+          "Keys": [
+            {
+              "Key": "AnimationSkeletonMismatch",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The source Skeleton has an invalid parent index."
+          },
+          "Keys": [
+            {
+              "Key": "BadParent",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Cannot resolve exported reference: "
+          },
+          "Keys": [
+            {
+              "Key": "BadReference",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Failed to create an Animation Blueprint."
+          },
+          "Keys": [
+            {
+              "Key": "BlueprintCreateFailed",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The current Animation Blueprint and preview mesh must use the same Skeleton."
+          },
+          "Keys": [
+            {
+              "Key": "BlueprintSkeletonMismatch",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The prepared nodes cannot be added to this graph."
+          },
+          "Keys": [
+            {
+              "Key": "CannotPaste",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Cannot read JSON: "
+          },
+          "Keys": [
+            {
+              "Key": "CannotReadJson",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose the character's abpp.json file."
+          },
+          "Keys": [
+            {
+              "Key": "ChooseAbpp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose the exported Game/Content folder"
+          },
+          "Keys": [
+            {
+              "Key": "ChooseContent",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose a FModel JSON export"
+          },
+          "Keys": [
+            {
+              "Key": "ChooseJson",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          },
+          "Keys": [
+            {
+              "Key": "ChoosePoseFolder",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The generated graph failed to compile. Check the Output Log."
+          },
+          "Keys": [
+            {
+              "Key": "CompileFailed",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "{0} compiled with {1} warnings. Check the Output Log."
+          },
+          "Keys": [
+            {
+              "Key": "CompileWarnings",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
+          },
+          "Keys": [
+            {
+              "Key": "ContentNotFound",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "FModel Game/Content folder (blank = automatic)"
+          },
+          "Keys": [
+            {
+              "Key": "ContentRoot",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The blueprint or preview mesh has changed. Prepare the import again in this blueprint's panel."
+          },
+          "Keys": [
+            {
+              "Key": "ContextChanged",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Created Pose Asset"
+          },
+          "Keys": [
+            {
+              "Key": "CreatedPoseAsset",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Current blueprint"
+          },
+          "Keys": [
+            {
+              "Key": "CurrentBlueprint",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "DrivePoses is supported; DriveCurves is not: "
+          },
+          "Keys": [
+            {
+              "Key": "DriveCurvesUnsupported",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Two outputs use the same asset path: "
+          },
+          "Keys": [
+            {
+              "Key": "DuplicateOutputPath",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "A pose name is empty or duplicated: "
+          },
+          "Keys": [
+            {
+              "Key": "DuplicatePoseName",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "No nodes could be prepared for import."
+          },
+          "Keys": [
+            {
+              "Key": "EmptyFragment",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The mesh already has a Post Process Anim Blueprint. Disable assignment and merge the result manually."
+          },
+          "Keys": [
+            {
+              "Key": "ExistingPostProcess",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Expected an exported FModel JSON array: "
+          },
+          "Keys": [
+            {
+              "Key": "ExpectedArray",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Groups: {0} selected / {1} total"
+          },
+          "Keys": [
+            {
+              "Key": "GroupCount",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Source node: {0}\nPose samples: {1}"
+          },
+          "Keys": [
+            {
+              "Key": "GroupDetail",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Found {0} groups. Select one or more groups to import."
+          },
+          "Keys": [
+            {
+              "Key": "GroupsRead",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
+          },
+          "Keys": [
+            {
+              "Key": "HierarchyMismatch",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "1. Import animations and create Pose Assets"
+          },
+          "Keys": [
+            {
+              "Key": "ImportPsaPoses",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Imported animation"
+          },
+          "Keys": [
+            {
+              "Key": "ImportedPsa",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Node import was incomplete. The added nodes were removed."
+          },
+          "Keys": [
+            {
+              "Key": "IncompletePaste",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Inertialization and state-transition logic are outside static physics import and were not copied."
+          },
+          "Keys": [
+            {
+              "Key": "InertializationNote",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Cannot follow Root LinkIDs to the input pose: "
+          },
+          "Keys": [
+            {
+              "Key": "InputNotFound",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Enter a full asset package path without an extension, for example /Game/Character/POSE/MyPose: "
+          },
+          "Keys": [
+            {
+              "Key": "InvalidAssetPackage",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The output folder must be a valid /Game/... path."
+          },
+          "Keys": [
+            {
+              "Key": "InvalidDestination",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Invalid physics array format: "
+          },
+          "Keys": [
+            {
+              "Key": "InvalidPhysicsArray",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The abpp contains an invalid Pose Asset name."
+          },
+          "Keys": [
+            {
+              "Key": "InvalidPoseReference",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Cannot load the KawaiiPhysicsEd node class."
+          },
+          "Keys": [
+            {
+              "Key": "KawaiiClassMissing",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "A cycle was found in blueprint LinkIDs: "
+          },
+          "Keys": [
+            {
+              "Key": "LinkCycle",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Failed to connect pose pins: "
+          },
+          "Keys": [
+            {
+              "Key": "LinkFailed",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The preview mesh changed. Read the groups again to validate them against the new mesh."
+          },
+          "Keys": [
+            {
+              "Key": "MeshChanged",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": " references a missing bone: "
+          },
+          "Keys": [
+            {
+              "Key": "MissingBone",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Missing JSON object: "
+          },
+          "Keys": [
+            {
+              "Key": "MissingJsonObject",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Import options are missing."
+          },
+          "Keys": [
+            {
+              "Key": "MissingOptions",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Open an editable animation graph in the current Animation Blueprint."
+          },
+          "Keys": [
+            {
+              "Key": "NeedAnimGraph",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose a pose or physics blueprint JSON."
+          },
+          "Keys": [
+            {
+              "Key": "NeedJson",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "A mesh with a Skeleton is required."
+          },
+          "Keys": [
+            {
+              "Key": "NeedMesh",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          },
+          "Keys": [
+            {
+              "Key": "NeedPoseFolder",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The new blueprint has no AnimGraph."
+          },
+          "Keys": [
+            {
+              "Key": "NoAnimGraph",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "JSON is missing its generated class or Default__ settings: "
+          },
+          "Keys": [
+            {
+              "Key": "NoDefaults",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Node default data is missing: "
+          },
+          "Keys": [
+            {
+              "Key": "NoNodeDefaults",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The new blueprint has no Output Pose."
+          },
+          "Keys": [
+            {
+              "Key": "NoOutputPose",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The Pose Asset JSON has no pose names: "
+          },
+          "Keys": [
+            {
+              "Key": "NoPoseNames",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Pose Driver is missing SourceBones or Targets."
+          },
+          "Keys": [
+            {
+              "Key": "NoPoseTargets",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Set a preview mesh in this Animation Blueprint first."
+          },
+          "Keys": [
+            {
+              "Key": "NoPreviewMesh",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
+          },
+          "Keys": [
+            {
+              "Key": "NoReferenceSkeleton",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Added {0} nodes to {1}. Connect the new chain to your pose flow, then compile and save. Ctrl+Z undoes this insertion."
+          },
+          "Keys": [
+            {
+              "Key": "NodesAdded",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Open the POSE folder in File Explorer"
+          },
+          "Keys": [
+            {
+              "Key": "OpenPoseFolder",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Open this graph"
+          },
+          "Keys": [
+            {
+              "Key": "OpenTargetGraph",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "An output asset already exists. Choose a new output folder: "
+          },
+          "Keys": [
+            {
+              "Key": "OutputExists",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Kawaii Import"
+          },
+          "Keys": [
+            {
+              "Key": "PhysicsButton",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreModule.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Read a physics blueprint JSON, prepare the selected Kawaii Physics groups, then add them to this Animation Blueprint."
+          },
+          "Keys": [
+            {
+              "Key": "PhysicsHelp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Physics blueprint JSON"
+          },
+          "Keys": [
+            {
+              "Key": "PhysicsJson",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Import Kawaii Physics"
+          },
+          "Keys": [
+            {
+              "Key": "PhysicsTitle",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestorePanelTests.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Pose Import"
+          },
+          "Keys": [
+            {
+              "Key": "PoseButton",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreModule.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "POSE folder"
+          },
+          "Keys": [
+            {
+              "Key": "PoseFolder",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Pose blueprint JSON (abpp)"
+          },
+          "Keys": [
+            {
+              "Key": "PoseJson",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Generated pose names differ from the source: "
+          },
+          "Keys": [
+            {
+              "Key": "PoseNamesChanged",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Import Pose Drivers / Pose Assets"
+          },
+          "Keys": [
+            {
+              "Key": "PoseTitle",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestorePanelTests.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "This blueprint is already the mesh's Post Process Anim Blueprint."
+          },
+          "Keys": [
+            {
+              "Key": "PostProcessAlreadySet",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The blueprint could not be compiled. Fix its errors before assigning it as a Post Process Anim Blueprint."
+          },
+          "Keys": [
+            {
+              "Key": "PostProcessCompileFailed",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Set {0} as the Post Process Anim Blueprint for {1}. Save the mesh to keep this change. Ctrl+Z restores the previous assignment."
+          },
+          "Keys": [
+            {
+              "Key": "PostProcessSet",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "1. Prepare selected physics groups"
+          },
+          "Keys": [
+            {
+              "Key": "PreparePhysics",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Ready. Use 'Add nodes to this blueprint' to insert the selected groups."
+          },
+          "Keys": [
+            {
+              "Key": "Prepared",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Prepared {0} Pose Drivers and {1} Kawaii Physics nodes.\nFolder: {2}\n"
+          },
+          "Keys": [
+            {
+              "Key": "PreparedCounts",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Preparing FModel animation groups..."
+          },
+          "Keys": [
+            {
+              "Key": "Preparing",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Preview mesh (read only)"
+          },
+          "Keys": [
+            {
+              "Key": "PreviewMesh",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Additive Pose Assets are not supported by this PSA import: "
+          },
+          "Keys": [
+            {
+              "Key": "PsaAdditiveUnsupported",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Expected one imported animation for each compensation group."
+          },
+          "Keys": [
+            {
+              "Key": "PsaImportCount",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Animations and Pose Assets are saved in the POSE folder beside this blueprint. Existing assets are kept; new imports receive unique names."
+          },
+          "Keys": [
+            {
+              "Key": "PsaOutputHelp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "{0} must contain one animation with {1} sampled poses matching the Pose Asset JSON."
+          },
+          "Keys": [
+            {
+              "Key": "PsaPoseCount",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose abpp.json and the POSE folder. Import the selected PSA animations, create Pose Assets, then add their Pose Drivers to this blueprint."
+          },
+          "Keys": [
+            {
+              "Key": "PsaPoseHelp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Imported {0} PSA animations and created {0} Pose Assets. Ready to add Pose Drivers."
+          },
+          "Keys": [
+            {
+              "Key": "PsaPrepared",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose abpp.json and its POSE folder, then read the groups. PSA animations will be imported automatically."
+          },
+          "Keys": [
+            {
+              "Key": "PsaReady",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The PSA is missing a required compensation bone: "
+          },
+          "Keys": [
+            {
+              "Key": "PsaRequiredBone",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "{0} + {1}  ({2} poses)"
+          },
+          "Keys": [
+            {
+              "Key": "PsaSourceFiles",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Read groups"
+          },
+          "Keys": [
+            {
+              "Key": "ReadGroups",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose a JSON export and read its groups. The target follows this editor's preview mesh."
+          },
+          "Keys": [
+            {
+              "Key": "Ready",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Report: "
+          },
+          "Keys": [
+            {
+              "Key": "ReportPath",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Show the selected JSON in File Explorer"
+          },
+          "Keys": [
+            {
+              "Key": "RevealAbpp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The mesh root bone differs from the source Skeleton."
+          },
+          "Keys": [
+            {
+              "Key": "RootMismatch",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Failed to save: "
+          },
+          "Keys": [
+            {
+              "Key": "SaveFailed",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose abpp.json..."
+          },
+          "Keys": [
+            {
+              "Key": "SelectAbpp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Select all"
+          },
+          "Keys": [
+            {
+              "Key": "SelectAll",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Select at least one group."
+          },
+          "Keys": [
+            {
+              "Key": "SelectGroups",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Clear selection"
+          },
+          "Keys": [
+            {
+              "Key": "SelectNone",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose POSE folder..."
+          },
+          "Keys": [
+            {
+              "Key": "SelectPoseFolder",
+              "Path": "Source/FModelAnimRestore/Private/SFModelPosePanelUI.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Choose exactly one import type: Pose Drivers or Kawaii Physics."
+          },
+          "Keys": [
+            {
+              "Key": "SeparateImports",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Set as mesh Post Process Anim Blueprint"
+          },
+          "Keys": [
+            {
+              "Key": "SetPostProcessButton",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Compile this blueprint and assign it as the preview mesh's Post Process Anim Blueprint. Supports Undo; save the mesh to keep the change."
+          },
+          "Keys": [
+            {
+              "Key": "SetPostProcessHelp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Set mesh Post Process Anim Blueprint"
+          },
+          "Keys": [
+            {
+              "Key": "SetPostProcessTransaction",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The selected groups no longer exist. Read the JSON again."
+          },
+          "Keys": [
+            {
+              "Key": "StaleSelection",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Target graph"
+          },
+          "Keys": [
+            {
+              "Key": "TargetGraph",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "PoseTarget does not match the pose name or source-bone count: "
+          },
+          "Keys": [
+            {
+              "Key": "TargetMismatch",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The physics JSON contains an unsupported non-KawaiiPhysics node."
+          },
+          "Keys": [
+            {
+              "Key": "UnexpectedPhysicsNode",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The pose JSON contains an unsupported non-PoseDriver node."
+          },
+          "Keys": [
+            {
+              "Key": "UnexpectedPoseNode",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "The pose chain contains an unsupported node: "
+          },
+          "Keys": [
+            {
+              "Key": "UnsupportedChain",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "{0} custom fields have no direct equivalent. Their original values are in the report; the original game physics behavior is not fully reproduced.\n"
+          },
+          "Keys": [
+            {
+              "Key": "UnsupportedFields",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "New groups keep their internal connections and are placed below the existing graph. Connect their input and output to your pose flow. Graph insertion supports Undo; created assets remain in the Content Browser."
+          },
+          "Keys": [
+            {
+              "Key": "WiringHelp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Missing or mismatched Pose Asset data: "
+          },
+          "Keys": [
+            {
+              "Key": "WrongPoseFile",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

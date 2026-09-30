@@ -1,0 +1,1019 @@
+{
+  "FormatVersion": 2,
+  "Namespace": "",
+  "Subnamespaces": [
+    {
+      "Namespace": "FModelAnimRestore",
+      "Children": [
+        {
+          "Key": "AddNodes",
+          "Source": {
+            "Text": "2. Add nodes to this blueprint"
+          },
+          "Translation": {
+            "Text": "2. Add nodes to this blueprint"
+          }
+        },
+        {
+          "Key": "AddTransaction",
+          "Source": {
+            "Text": "Add FModel animation nodes"
+          },
+          "Translation": {
+            "Text": "Add FModel animation nodes"
+          }
+        },
+        {
+          "Key": "AnimationSkeletonMismatch",
+          "Source": {
+            "Text": "The preview animation must use the same Skeleton as the target mesh."
+          },
+          "Translation": {
+            "Text": "The preview animation must use the same Skeleton as the target mesh."
+          }
+        },
+        {
+          "Key": "BadParent",
+          "Source": {
+            "Text": "The source Skeleton has an invalid parent index."
+          },
+          "Translation": {
+            "Text": "The source Skeleton has an invalid parent index."
+          }
+        },
+        {
+          "Key": "BadReference",
+          "Source": {
+            "Text": "Cannot resolve exported reference: "
+          },
+          "Translation": {
+            "Text": "Cannot resolve exported reference: "
+          }
+        },
+        {
+          "Key": "BlueprintCreateFailed",
+          "Source": {
+            "Text": "Failed to create an Animation Blueprint."
+          },
+          "Translation": {
+            "Text": "Failed to create an Animation Blueprint."
+          }
+        },
+        {
+          "Key": "BlueprintSkeletonMismatch",
+          "Source": {
+            "Text": "The current Animation Blueprint and preview mesh must use the same Skeleton."
+          },
+          "Translation": {
+            "Text": "The current Animation Blueprint and preview mesh must use the same Skeleton."
+          }
+        },
+        {
+          "Key": "CannotPaste",
+          "Source": {
+            "Text": "The prepared nodes cannot be added to this graph."
+          },
+          "Translation": {
+            "Text": "The prepared nodes cannot be added to this graph."
+          }
+        },
+        {
+          "Key": "CannotReadJson",
+          "Source": {
+            "Text": "Cannot read JSON: "
+          },
+          "Translation": {
+            "Text": "Cannot read JSON: "
+          }
+        },
+        {
+          "Key": "ChooseAbpp",
+          "Source": {
+            "Text": "Choose the character's abpp.json file."
+          },
+          "Translation": {
+            "Text": "Choose the character's abpp.json file."
+          }
+        },
+        {
+          "Key": "ChooseContent",
+          "Source": {
+            "Text": "Choose the exported Game/Content folder"
+          },
+          "Translation": {
+            "Text": "Choose the exported Game/Content folder"
+          }
+        },
+        {
+          "Key": "ChooseJson",
+          "Source": {
+            "Text": "Choose a FModel JSON export"
+          },
+          "Translation": {
+            "Text": "Choose a FModel JSON export"
+          }
+        },
+        {
+          "Key": "ChoosePoseFolder",
+          "Source": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          },
+          "Translation": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          }
+        },
+        {
+          "Key": "CompileFailed",
+          "Source": {
+            "Text": "The generated graph failed to compile. Check the Output Log."
+          },
+          "Translation": {
+            "Text": "The generated graph failed to compile. Check the Output Log."
+          }
+        },
+        {
+          "Key": "CompileWarnings",
+          "Source": {
+            "Text": "{0} compiled with {1} warnings. Check the Output Log."
+          },
+          "Translation": {
+            "Text": "{0} compiled with {1} warnings. Check the Output Log."
+          }
+        },
+        {
+          "Key": "ContentNotFound",
+          "Source": {
+            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
+          },
+          "Translation": {
+            "Text": "Cannot locate the exported Game/Content folder. Choose it explicitly."
+          }
+        },
+        {
+          "Key": "ContentRoot",
+          "Source": {
+            "Text": "FModel Game/Content folder (blank = automatic)"
+          },
+          "Translation": {
+            "Text": "FModel Game/Content folder (blank = automatic)"
+          }
+        },
+        {
+          "Key": "ContextChanged",
+          "Source": {
+            "Text": "The blueprint or preview mesh has changed. Prepare the import again in this blueprint's panel."
+          },
+          "Translation": {
+            "Text": "The blueprint or preview mesh has changed. Prepare the import again in this blueprint's panel."
+          }
+        },
+        {
+          "Key": "CreatedPoseAsset",
+          "Source": {
+            "Text": "Created Pose Asset"
+          },
+          "Translation": {
+            "Text": "Created Pose Asset"
+          }
+        },
+        {
+          "Key": "CurrentBlueprint",
+          "Source": {
+            "Text": "Current blueprint"
+          },
+          "Translation": {
+            "Text": "Current blueprint"
+          }
+        },
+        {
+          "Key": "DriveCurvesUnsupported",
+          "Source": {
+            "Text": "DrivePoses is supported; DriveCurves is not: "
+          },
+          "Translation": {
+            "Text": "DrivePoses is supported; DriveCurves is not: "
+          }
+        },
+        {
+          "Key": "DuplicateOutputPath",
+          "Source": {
+            "Text": "Two outputs use the same asset path: "
+          },
+          "Translation": {
+            "Text": "Two outputs use the same asset path: "
+          }
+        },
+        {
+          "Key": "DuplicatePoseName",
+          "Source": {
+            "Text": "A pose name is empty or duplicated: "
+          },
+          "Translation": {
+            "Text": "A pose name is empty or duplicated: "
+          }
+        },
+        {
+          "Key": "EmptyFragment",
+          "Source": {
+            "Text": "No nodes could be prepared for import."
+          },
+          "Translation": {
+            "Text": "No nodes could be prepared for import."
+          }
+        },
+        {
+          "Key": "ExistingPostProcess",
+          "Source": {
+            "Text": "The mesh already has a Post Process Anim Blueprint. Disable assignment and merge the result manually."
+          },
+          "Translation": {
+            "Text": "The mesh already has a Post Process Anim Blueprint. Disable assignment and merge the result manually."
+          }
+        },
+        {
+          "Key": "ExpectedArray",
+          "Source": {
+            "Text": "Expected an exported FModel JSON array: "
+          },
+          "Translation": {
+            "Text": "Expected an exported FModel JSON array: "
+          }
+        },
+        {
+          "Key": "GroupCount",
+          "Source": {
+            "Text": "Groups: {0} selected / {1} total"
+          },
+          "Translation": {
+            "Text": "Groups: {0} selected / {1} total"
+          }
+        },
+        {
+          "Key": "GroupDetail",
+          "Source": {
+            "Text": "Source node: {0}\nPose samples: {1}"
+          },
+          "Translation": {
+            "Text": "Source node: {0}\nPose samples: {1}"
+          }
+        },
+        {
+          "Key": "GroupsRead",
+          "Source": {
+            "Text": "Found {0} groups. Select one or more groups to import."
+          },
+          "Translation": {
+            "Text": "Found {0} groups. Select one or more groups to import."
+          }
+        },
+        {
+          "Key": "HierarchyMismatch",
+          "Source": {
+            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
+          },
+          "Translation": {
+            "Text": "Incompatible hierarchy: {0}; source parent {1}; target parent {2}. Use a matching mesh variant."
+          }
+        },
+        {
+          "Key": "ImportPsaPoses",
+          "Source": {
+            "Text": "1. Import animations and create Pose Assets"
+          },
+          "Translation": {
+            "Text": "1. Import animations and create Pose Assets"
+          }
+        },
+        {
+          "Key": "ImportedPsa",
+          "Source": {
+            "Text": "Imported animation"
+          },
+          "Translation": {
+            "Text": "Imported animation"
+          }
+        },
+        {
+          "Key": "IncompletePaste",
+          "Source": {
+            "Text": "Node import was incomplete. The added nodes were removed."
+          },
+          "Translation": {
+            "Text": "Node import was incomplete. The added nodes were removed."
+          }
+        },
+        {
+          "Key": "InertializationNote",
+          "Source": {
+            "Text": "Inertialization and state-transition logic are outside static physics import and were not copied."
+          },
+          "Translation": {
+            "Text": "Inertialization and state-transition logic are outside static physics import and were not copied."
+          }
+        },
+        {
+          "Key": "InputNotFound",
+          "Source": {
+            "Text": "Cannot follow Root LinkIDs to the input pose: "
+          },
+          "Translation": {
+            "Text": "Cannot follow Root LinkIDs to the input pose: "
+          }
+        },
+        {
+          "Key": "InvalidAssetPackage",
+          "Source": {
+            "Text": "Enter a full asset package path without an extension, for example /Game/Character/POSE/MyPose: "
+          },
+          "Translation": {
+            "Text": "Enter a full asset package path without an extension, for example /Game/Character/POSE/MyPose: "
+          }
+        },
+        {
+          "Key": "InvalidDestination",
+          "Source": {
+            "Text": "The output folder must be a valid /Game/... path."
+          },
+          "Translation": {
+            "Text": "The output folder must be a valid /Game/... path."
+          }
+        },
+        {
+          "Key": "InvalidPhysicsArray",
+          "Source": {
+            "Text": "Invalid physics array format: "
+          },
+          "Translation": {
+            "Text": "Invalid physics array format: "
+          }
+        },
+        {
+          "Key": "InvalidPoseReference",
+          "Source": {
+            "Text": "The abpp contains an invalid Pose Asset name."
+          },
+          "Translation": {
+            "Text": "The abpp contains an invalid Pose Asset name."
+          }
+        },
+        {
+          "Key": "KawaiiClassMissing",
+          "Source": {
+            "Text": "Cannot load the KawaiiPhysicsEd node class."
+          },
+          "Translation": {
+            "Text": "Cannot load the KawaiiPhysicsEd node class."
+          }
+        },
+        {
+          "Key": "LinkCycle",
+          "Source": {
+            "Text": "A cycle was found in blueprint LinkIDs: "
+          },
+          "Translation": {
+            "Text": "A cycle was found in blueprint LinkIDs: "
+          }
+        },
+        {
+          "Key": "LinkFailed",
+          "Source": {
+            "Text": "Failed to connect pose pins: "
+          },
+          "Translation": {
+            "Text": "Failed to connect pose pins: "
+          }
+        },
+        {
+          "Key": "MeshChanged",
+          "Source": {
+            "Text": "The preview mesh changed. Read the groups again to validate them against the new mesh."
+          },
+          "Translation": {
+            "Text": "The preview mesh changed. Read the groups again to validate them against the new mesh."
+          }
+        },
+        {
+          "Key": "MissingBone",
+          "Source": {
+            "Text": " references a missing bone: "
+          },
+          "Translation": {
+            "Text": " references a missing bone: "
+          }
+        },
+        {
+          "Key": "MissingJsonObject",
+          "Source": {
+            "Text": "Missing JSON object: "
+          },
+          "Translation": {
+            "Text": "Missing JSON object: "
+          }
+        },
+        {
+          "Key": "MissingOptions",
+          "Source": {
+            "Text": "Import options are missing."
+          },
+          "Translation": {
+            "Text": "Import options are missing."
+          }
+        },
+        {
+          "Key": "NeedAnimGraph",
+          "Source": {
+            "Text": "Open an editable animation graph in the current Animation Blueprint."
+          },
+          "Translation": {
+            "Text": "Open an editable animation graph in the current Animation Blueprint."
+          }
+        },
+        {
+          "Key": "NeedJson",
+          "Source": {
+            "Text": "Choose a pose or physics blueprint JSON."
+          },
+          "Translation": {
+            "Text": "Choose a pose or physics blueprint JSON."
+          }
+        },
+        {
+          "Key": "NeedMesh",
+          "Source": {
+            "Text": "A mesh with a Skeleton is required."
+          },
+          "Translation": {
+            "Text": "A mesh with a Skeleton is required."
+          }
+        },
+        {
+          "Key": "NeedPoseFolder",
+          "Source": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          },
+          "Translation": {
+            "Text": "Choose the folder containing the POSE PSA files and PoseAsset JSON files."
+          }
+        },
+        {
+          "Key": "NoAnimGraph",
+          "Source": {
+            "Text": "The new blueprint has no AnimGraph."
+          },
+          "Translation": {
+            "Text": "The new blueprint has no AnimGraph."
+          }
+        },
+        {
+          "Key": "NoDefaults",
+          "Source": {
+            "Text": "JSON is missing its generated class or Default__ settings: "
+          },
+          "Translation": {
+            "Text": "JSON is missing its generated class or Default__ settings: "
+          }
+        },
+        {
+          "Key": "NoNodeDefaults",
+          "Source": {
+            "Text": "Node default data is missing: "
+          },
+          "Translation": {
+            "Text": "Node default data is missing: "
+          }
+        },
+        {
+          "Key": "NoOutputPose",
+          "Source": {
+            "Text": "The new blueprint has no Output Pose."
+          },
+          "Translation": {
+            "Text": "The new blueprint has no Output Pose."
+          }
+        },
+        {
+          "Key": "NoPoseNames",
+          "Source": {
+            "Text": "The Pose Asset JSON has no pose names: "
+          },
+          "Translation": {
+            "Text": "The Pose Asset JSON has no pose names: "
+          }
+        },
+        {
+          "Key": "NoPoseTargets",
+          "Source": {
+            "Text": "Pose Driver is missing SourceBones or Targets."
+          },
+          "Translation": {
+            "Text": "Pose Driver is missing SourceBones or Targets."
+          }
+        },
+        {
+          "Key": "NoPreviewMesh",
+          "Source": {
+            "Text": "Set a preview mesh in this Animation Blueprint first."
+          },
+          "Translation": {
+            "Text": "Set a preview mesh in this Animation Blueprint first."
+          }
+        },
+        {
+          "Key": "NoReferenceSkeleton",
+          "Source": {
+            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
+          },
+          "Translation": {
+            "Text": "Skeleton JSON is missing ReferenceSkeleton: "
+          }
+        },
+        {
+          "Key": "NodesAdded",
+          "Source": {
+            "Text": "Added {0} nodes to {1}. Connect the new chain to your pose flow, then compile and save. Ctrl+Z undoes this insertion."
+          },
+          "Translation": {
+            "Text": "Added {0} nodes to {1}. Connect the new chain to your pose flow, then compile and save. Ctrl+Z undoes this insertion."
+          }
+        },
+        {
+          "Key": "OpenPoseFolder",
+          "Source": {
+            "Text": "Open the POSE folder in File Explorer"
+          },
+          "Translation": {
+            "Text": "Open the POSE folder in File Explorer"
+          }
+        },
+        {
+          "Key": "OpenTargetGraph",
+          "Source": {
+            "Text": "Open this graph"
+          },
+          "Translation": {
+            "Text": "Open this graph"
+          }
+        },
+        {
+          "Key": "OutputExists",
+          "Source": {
+            "Text": "An output asset already exists. Choose a new output folder: "
+          },
+          "Translation": {
+            "Text": "An output asset already exists. Choose a new output folder: "
+          }
+        },
+        {
+          "Key": "PhysicsButton",
+          "Source": {
+            "Text": "Kawaii Import"
+          },
+          "Translation": {
+            "Text": "Kawaii Import"
+          }
+        },
+        {
+          "Key": "PhysicsHelp",
+          "Source": {
+            "Text": "Read a physics blueprint JSON, prepare the selected Kawaii Physics groups, then add them to this Animation Blueprint."
+          },
+          "Translation": {
+            "Text": "Read a physics blueprint JSON, prepare the selected Kawaii Physics groups, then add them to this Animation Blueprint."
+          }
+        },
+        {
+          "Key": "PhysicsJson",
+          "Source": {
+            "Text": "Physics blueprint JSON"
+          },
+          "Translation": {
+            "Text": "Physics blueprint JSON"
+          }
+        },
+        {
+          "Key": "PhysicsTitle",
+          "Source": {
+            "Text": "Import Kawaii Physics"
+          },
+          "Translation": {
+            "Text": "Import Kawaii Physics"
+          }
+        },
+        {
+          "Key": "PoseButton",
+          "Source": {
+            "Text": "Pose Import"
+          },
+          "Translation": {
+            "Text": "Pose Import"
+          }
+        },
+        {
+          "Key": "PoseFolder",
+          "Source": {
+            "Text": "POSE folder"
+          },
+          "Translation": {
+            "Text": "POSE folder"
+          }
+        },
+        {
+          "Key": "PoseJson",
+          "Source": {
+            "Text": "Pose blueprint JSON (abpp)"
+          },
+          "Translation": {
+            "Text": "Pose blueprint JSON (abpp)"
+          }
+        },
+        {
+          "Key": "PoseNamesChanged",
+          "Source": {
+            "Text": "Generated pose names differ from the source: "
+          },
+          "Translation": {
+            "Text": "Generated pose names differ from the source: "
+          }
+        },
+        {
+          "Key": "PoseTitle",
+          "Source": {
+            "Text": "Import Pose Drivers / Pose Assets"
+          },
+          "Translation": {
+            "Text": "Import Pose Drivers / Pose Assets"
+          }
+        },
+        {
+          "Key": "PostProcessAlreadySet",
+          "Source": {
+            "Text": "This blueprint is already the mesh's Post Process Anim Blueprint."
+          },
+          "Translation": {
+            "Text": "This blueprint is already the mesh's Post Process Anim Blueprint."
+          }
+        },
+        {
+          "Key": "PostProcessCompileFailed",
+          "Source": {
+            "Text": "The blueprint could not be compiled. Fix its errors before assigning it as a Post Process Anim Blueprint."
+          },
+          "Translation": {
+            "Text": "The blueprint could not be compiled. Fix its errors before assigning it as a Post Process Anim Blueprint."
+          }
+        },
+        {
+          "Key": "PostProcessSet",
+          "Source": {
+            "Text": "Set {0} as the Post Process Anim Blueprint for {1}. Save the mesh to keep this change. Ctrl+Z restores the previous assignment."
+          },
+          "Translation": {
+            "Text": "Set {0} as the Post Process Anim Blueprint for {1}. Save the mesh to keep this change. Ctrl+Z restores the previous assignment."
+          }
+        },
+        {
+          "Key": "PreparePhysics",
+          "Source": {
+            "Text": "1. Prepare selected physics groups"
+          },
+          "Translation": {
+            "Text": "1. Prepare selected physics groups"
+          }
+        },
+        {
+          "Key": "Prepared",
+          "Source": {
+            "Text": "Ready. Use 'Add nodes to this blueprint' to insert the selected groups."
+          },
+          "Translation": {
+            "Text": "Ready. Use 'Add nodes to this blueprint' to insert the selected groups."
+          }
+        },
+        {
+          "Key": "PreparedCounts",
+          "Source": {
+            "Text": "Prepared {0} Pose Drivers and {1} Kawaii Physics nodes.\nFolder: {2}\n"
+          },
+          "Translation": {
+            "Text": "Prepared {0} Pose Drivers and {1} Kawaii Physics nodes.\nFolder: {2}\n"
+          }
+        },
+        {
+          "Key": "Preparing",
+          "Source": {
+            "Text": "Preparing FModel animation groups..."
+          },
+          "Translation": {
+            "Text": "Preparing FModel animation groups..."
+          }
+        },
+        {
+          "Key": "PreviewMesh",
+          "Source": {
+            "Text": "Preview mesh (read only)"
+          },
+          "Translation": {
+            "Text": "Preview mesh (read only)"
+          }
+        },
+        {
+          "Key": "PsaAdditiveUnsupported",
+          "Source": {
+            "Text": "Additive Pose Assets are not supported by this PSA import: "
+          },
+          "Translation": {
+            "Text": "Additive Pose Assets are not supported by this PSA import: "
+          }
+        },
+        {
+          "Key": "PsaImportCount",
+          "Source": {
+            "Text": "Expected one imported animation for each compensation group."
+          },
+          "Translation": {
+            "Text": "Expected one imported animation for each compensation group."
+          }
+        },
+        {
+          "Key": "PsaOutputHelp",
+          "Source": {
+            "Text": "Animations and Pose Assets are saved in the POSE folder beside this blueprint. Existing assets are kept; new imports receive unique names."
+          },
+          "Translation": {
+            "Text": "Animations and Pose Assets are saved in the POSE folder beside this blueprint. Existing assets are kept; new imports receive unique names."
+          }
+        },
+        {
+          "Key": "PsaPoseCount",
+          "Source": {
+            "Text": "{0} must contain one animation with {1} sampled poses matching the Pose Asset JSON."
+          },
+          "Translation": {
+            "Text": "{0} must contain one animation with {1} sampled poses matching the Pose Asset JSON."
+          }
+        },
+        {
+          "Key": "PsaPoseHelp",
+          "Source": {
+            "Text": "Choose abpp.json and the POSE folder. Import the selected PSA animations, create Pose Assets, then add their Pose Drivers to this blueprint."
+          },
+          "Translation": {
+            "Text": "Choose abpp.json and the POSE folder. Import the selected PSA animations, create Pose Assets, then add their Pose Drivers to this blueprint."
+          }
+        },
+        {
+          "Key": "PsaPrepared",
+          "Source": {
+            "Text": "Imported {0} PSA animations and created {0} Pose Assets. Ready to add Pose Drivers."
+          },
+          "Translation": {
+            "Text": "Imported {0} PSA animations and created {0} Pose Assets. Ready to add Pose Drivers."
+          }
+        },
+        {
+          "Key": "PsaReady",
+          "Source": {
+            "Text": "Choose abpp.json and its POSE folder, then read the groups. PSA animations will be imported automatically."
+          },
+          "Translation": {
+            "Text": "Choose abpp.json and its POSE folder, then read the groups. PSA animations will be imported automatically."
+          }
+        },
+        {
+          "Key": "PsaRequiredBone",
+          "Source": {
+            "Text": "The PSA is missing a required compensation bone: "
+          },
+          "Translation": {
+            "Text": "The PSA is missing a required compensation bone: "
+          }
+        },
+        {
+          "Key": "PsaSourceFiles",
+          "Source": {
+            "Text": "{0} + {1}  ({2} poses)"
+          },
+          "Translation": {
+            "Text": "{0} + {1}  ({2} poses)"
+          }
+        },
+        {
+          "Key": "ReadGroups",
+          "Source": {
+            "Text": "Read groups"
+          },
+          "Translation": {
+            "Text": "Read groups"
+          }
+        },
+        {
+          "Key": "Ready",
+          "Source": {
+            "Text": "Choose a JSON export and read its groups. The target follows this editor's preview mesh."
+          },
+          "Translation": {
+            "Text": "Choose a JSON export and read its groups. The target follows this editor's preview mesh."
+          }
+        },
+        {
+          "Key": "ReportPath",
+          "Source": {
+            "Text": "Report: "
+          },
+          "Translation": {
+            "Text": "Report: "
+          }
+        },
+        {
+          "Key": "RevealAbpp",
+          "Source": {
+            "Text": "Show the selected JSON in File Explorer"
+          },
+          "Translation": {
+            "Text": "Show the selected JSON in File Explorer"
+          }
+        },
+        {
+          "Key": "RootMismatch",
+          "Source": {
+            "Text": "The mesh root bone differs from the source Skeleton."
+          },
+          "Translation": {
+            "Text": "The mesh root bone differs from the source Skeleton."
+          }
+        },
+        {
+          "Key": "SaveFailed",
+          "Source": {
+            "Text": "Failed to save: "
+          },
+          "Translation": {
+            "Text": "Failed to save: "
+          }
+        },
+        {
+          "Key": "SelectAbpp",
+          "Source": {
+            "Text": "Choose abpp.json..."
+          },
+          "Translation": {
+            "Text": "Choose abpp.json..."
+          }
+        },
+        {
+          "Key": "SelectAll",
+          "Source": {
+            "Text": "Select all"
+          },
+          "Translation": {
+            "Text": "Select all"
+          }
+        },
+        {
+          "Key": "SelectGroups",
+          "Source": {
+            "Text": "Select at least one group."
+          },
+          "Translation": {
+            "Text": "Select at least one group."
+          }
+        },
+        {
+          "Key": "SelectNone",
+          "Source": {
+            "Text": "Clear selection"
+          },
+          "Translation": {
+            "Text": "Clear selection"
+          }
+        },
+        {
+          "Key": "SelectPoseFolder",
+          "Source": {
+            "Text": "Choose POSE folder..."
+          },
+          "Translation": {
+            "Text": "Choose POSE folder..."
+          }
+        },
+        {
+          "Key": "SeparateImports",
+          "Source": {
+            "Text": "Choose exactly one import type: Pose Drivers or Kawaii Physics."
+          },
+          "Translation": {
+            "Text": "Choose exactly one import type: Pose Drivers or Kawaii Physics."
+          }
+        },
+        {
+          "Key": "SetPostProcessButton",
+          "Source": {
+            "Text": "Set as mesh Post Process Anim Blueprint"
+          },
+          "Translation": {
+            "Text": "Set as mesh Post Process Anim Blueprint"
+          }
+        },
+        {
+          "Key": "SetPostProcessHelp",
+          "Source": {
+            "Text": "Compile this blueprint and assign it as the preview mesh's Post Process Anim Blueprint. Supports Undo; save the mesh to keep the change."
+          },
+          "Translation": {
+            "Text": "Compile this blueprint and assign it as the preview mesh's Post Process Anim Blueprint. Supports Undo; save the mesh to keep the change."
+          }
+        },
+        {
+          "Key": "SetPostProcessTransaction",
+          "Source": {
+            "Text": "Set mesh Post Process Anim Blueprint"
+          },
+          "Translation": {
+            "Text": "Set mesh Post Process Anim Blueprint"
+          }
+        },
+        {
+          "Key": "StaleSelection",
+          "Source": {
+            "Text": "The selected groups no longer exist. Read the JSON again."
+          },
+          "Translation": {
+            "Text": "The selected groups no longer exist. Read the JSON again."
+          }
+        },
+        {
+          "Key": "TargetGraph",
+          "Source": {
+            "Text": "Target graph"
+          },
+          "Translation": {
+            "Text": "Target graph"
+          }
+        },
+        {
+          "Key": "TargetMismatch",
+          "Source": {
+            "Text": "PoseTarget does not match the pose name or source-bone count: "
+          },
+          "Translation": {
+            "Text": "PoseTarget does not match the pose name or source-bone count: "
+          }
+        },
+        {
+          "Key": "UnexpectedPhysicsNode",
+          "Source": {
+            "Text": "The physics JSON contains an unsupported non-KawaiiPhysics node."
+          },
+          "Translation": {
+            "Text": "The physics JSON contains an unsupported non-KawaiiPhysics node."
+          }
+        },
+        {
+          "Key": "UnexpectedPoseNode",
+          "Source": {
+            "Text": "The pose JSON contains an unsupported non-PoseDriver node."
+          },
+          "Translation": {
+            "Text": "The pose JSON contains an unsupported non-PoseDriver node."
+          }
+        },
+        {
+          "Key": "UnsupportedChain",
+          "Source": {
+            "Text": "The pose chain contains an unsupported node: "
+          },
+          "Translation": {
+            "Text": "The pose chain contains an unsupported node: "
+          }
+        },
+        {
+          "Key": "UnsupportedFields",
+          "Source": {
+            "Text": "{0} custom fields have no direct equivalent. Their original values are in the report; the original game physics behavior is not fully reproduced.\n"
+          },
+          "Translation": {
+            "Text": "{0} custom fields have no direct equivalent. Their original values are in the report; the original game physics behavior is not fully reproduced.\n"
+          }
+        },
+        {
+          "Key": "WiringHelp",
+          "Source": {
+            "Text": "New groups keep their internal connections and are placed below the existing graph. Connect their input and output to your pose flow. Graph insertion supports Undo; created assets remain in the Content Browser."
+          },
+          "Translation": {
+            "Text": "New groups keep their internal connections and are placed below the existing graph. Connect their input and output to your pose flow. Graph insertion supports Undo; created assets remain in the Content Browser."
+          }
+        },
+        {
+          "Key": "WrongPoseFile",
+          "Source": {
+            "Text": "Missing or mismatched Pose Asset data: "
+          },
+          "Translation": {
+            "Text": "Missing or mismatched Pose Asset data: "
+          }
+        }
+      ]
+    }
+  ]
+}

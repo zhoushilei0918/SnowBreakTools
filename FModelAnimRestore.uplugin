@@ -1,0 +1,34 @@
+{
+  "FileVersion": 3,
+  "Version": 6,
+  "VersionName": "1.3.1",
+  "FriendlyName": "FModel Animation Restore",
+  "Description": "Restore editable Pose Driver and Kawaii Physics graphs from FModel JSON exports.",
+  "Category": "Animation",
+  "EngineVersion": "5.8.0",
+  "CanContainContent": true,
+  "LocalizationTargets": [
+    {
+      "Name": "FModelAnimRestore",
+      "LoadingPolicy": "Editor"
+    }
+  ],
+  "EnabledByDefault": true,
+  "Modules": [
+    {
+      "Name": "FModelAnimRestore",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "UnrealPSKPSA",
+      "Enabled": true
+    },
+    {
+      "Name": "KawaiiPhysics",
+      "Enabled": true
+    }
+  ]
+}
