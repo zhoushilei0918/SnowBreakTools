@@ -49,6 +49,7 @@ void SFModelRestorePanel::Construct(const FArguments& Args)
 {
     Editor=Args._Editor; bPhysics=Args._Physics;
     Options.Reset(NewObject<UFModelAnimRestoreOptions>()); ObservedMesh=Mesh();
+    Options->bSkipNonPoseNodes=!bPhysics;
     if (auto* BP=Blueprint())
     {
         Options->Destination=bPhysics ? TEXT("/Game/FModelRestored/")+BP->GetName() : UFModelAnimRestoreLibrary::DefaultPoseDestination(BP);
@@ -64,6 +65,16 @@ void SFModelRestorePanel::Construct(const FArguments& Args)
         LOCTEXT("PsaPoseHelp","Choose abpp.json and the POSE folder. Import the selected PSA animations, create Pose Assets, then add their Pose Drivers to this blueprint."))];
     BuildContext(Form.ToSharedRef());
     BuildFileOptions(Form.ToSharedRef());
+    if (!bPhysics) Form->AddSlot().AutoHeight().Padding(0,4)[SNew(SCheckBox)
+        .IsChecked_Lambda([this]{return Options->bSkipNonPoseNodes?ECheckBoxState::Checked:ECheckBoxState::Unchecked;})
+        .OnCheckStateChanged_Lambda([this](ECheckBoxState State)
+        {
+            Options->bSkipNonPoseNodes=State==ECheckBoxState::Checked;
+            Invalidate(true); bNeedsRead=true;
+            ShowReport(LOCTEXT("PoseFilterChanged","The import option changed. Read the groups again before creating assets.").ToString());
+        })
+        .ToolTipText(LOCTEXT("SkipNonPoseHelp","Pose import only. Bypass nodes such as Control Rig when they have exactly one pose input. Their effects are not restored. Multi-input branches are rejected; Kawaii Physics import is unchanged."))
+        [SNew(STextBlock).AutoWrapText(true).Text(LOCTEXT("SkipNonPoseNodes","Skip non-Pose Driver nodes"))]];
     Form->AddSlot().AutoHeight().Padding(0,12)[SNew(SHorizontalBox)
         +SHorizontalBox::Slot().AutoWidth()[SNew(SButton).Text(LOCTEXT("ReadGroups","Read groups")).IsEnabled_Lambda([this]{return Blueprint()&&Mesh()&&(bPhysics?!Options->PhysicsBlueprintJson.FilePath.IsEmpty():(!Options->PoseBlueprintJson.FilePath.IsEmpty()&&!Options->PoseDirectory.Path.IsEmpty()));}).OnClicked(this,&SFModelRestorePanel::ReadGroups)]
         +SHorizontalBox::Slot().AutoWidth().Padding(8,0)[SNew(SButton).Text(LOCTEXT("SelectAll","Select all")).OnClicked(this,&SFModelRestorePanel::SelectAll,true)]

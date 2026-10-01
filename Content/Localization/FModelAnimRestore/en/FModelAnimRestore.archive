@@ -69,6 +69,15 @@
           }
         },
         {
+          "Key": "CannotSkipPoseNode",
+          "Source": {
+            "Text": "Cannot skip {0}: expected exactly one valid pose input. Branches, missing inputs and invalid LinkIDs cannot be bypassed."
+          },
+          "Translation": {
+            "Text": "Cannot skip {0}: expected exactly one valid pose input. Branches, missing inputs and invalid LinkIDs cannot be bypassed."
+          }
+        },
+        {
           "Key": "ChooseAbpp",
           "Source": {
             "Text": "Choose the character's abpp.json file."
@@ -555,6 +564,15 @@
           }
         },
         {
+          "Key": "PoseFilterChanged",
+          "Source": {
+            "Text": "The import option changed. Read the groups again before creating assets."
+          },
+          "Translation": {
+            "Text": "The import option changed. Read the groups again before creating assets."
+          }
+        },
+        {
           "Key": "PoseFolder",
           "Source": {
             "Text": "POSE folder"
@@ -876,6 +894,33 @@
           },
           "Translation": {
             "Text": "Set mesh Post Process Anim Blueprint"
+          }
+        },
+        {
+          "Key": "SkipNonPoseHelp",
+          "Source": {
+            "Text": "Pose import only. Bypass nodes such as Control Rig when they have exactly one pose input. Their effects are not restored. Multi-input branches are rejected; Kawaii Physics import is unchanged."
+          },
+          "Translation": {
+            "Text": "Pose import only. Bypass nodes such as Control Rig when they have exactly one pose input. Their effects are not restored. Multi-input branches are rejected; Kawaii Physics import is unchanged."
+          }
+        },
+        {
+          "Key": "SkipNonPoseNodes",
+          "Source": {
+            "Text": "Skip non-Pose Driver nodes"
+          },
+          "Translation": {
+            "Text": "Skip non-Pose Driver nodes"
+          }
+        },
+        {
+          "Key": "SkippedPoseNode",
+          "Source": {
+            "Text": "Skipped {0}. This node's effects (such as Control Rig corrections) were not restored."
+          },
+          "Translation": {
+            "Text": "Skipped {0}. This node's effects (such as Control Rig corrections) were not restored."
           }
         },
         {

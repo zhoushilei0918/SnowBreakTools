@@ -69,6 +69,15 @@
           }
         },
         {
+          "Key": "CannotSkipPoseNode",
+          "Source": {
+            "Text": "Cannot skip {0}: expected exactly one valid pose input. Branches, missing inputs and invalid LinkIDs cannot be bypassed."
+          },
+          "Translation": {
+            "Text": "无法跳过 {0}：需要唯一且有效的姿态输入。不能跳过多输入分支、缺失输入或无效的 LinkID。"
+          }
+        },
+        {
           "Key": "ChooseAbpp",
           "Source": {
             "Text": "Choose the character's abpp.json file."
@@ -555,6 +564,15 @@
           }
         },
         {
+          "Key": "PoseFilterChanged",
+          "Source": {
+            "Text": "The import option changed. Read the groups again before creating assets."
+          },
+          "Translation": {
+            "Text": "导入选项已改变，请重新读取分组后再创建资产。"
+          }
+        },
+        {
           "Key": "PoseFolder",
           "Source": {
             "Text": "POSE folder"
@@ -876,6 +894,33 @@
           },
           "Translation": {
             "Text": "设置网格体后处理动画蓝图"
+          }
+        },
+        {
+          "Key": "SkipNonPoseHelp",
+          "Source": {
+            "Text": "Pose import only. Bypass nodes such as Control Rig when they have exactly one pose input. Their effects are not restored. Multi-input branches are rejected; Kawaii Physics import is unchanged."
+          },
+          "Translation": {
+            "Text": "仅用于 Pose 导入。对于 Control Rig 等节点，只有确定其唯一姿态输入时才会跳过，节点自身的效果不会还原。多输入分支会被拒绝；不改变 Kawaii Physics 导入。"
+          }
+        },
+        {
+          "Key": "SkipNonPoseNodes",
+          "Source": {
+            "Text": "Skip non-Pose Driver nodes"
+          },
+          "Translation": {
+            "Text": "跳过非 Pose Driver 节点"
+          }
+        },
+        {
+          "Key": "SkippedPoseNode",
+          "Source": {
+            "Text": "Skipped {0}. This node's effects (such as Control Rig corrections) were not restored."
+          },
+          "Translation": {
+            "Text": "已跳过 {0}。该节点自身的效果（例如 Control Rig 修正）未还原。"
           }
         },
         {

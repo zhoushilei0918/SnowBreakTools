@@ -156,5 +156,10 @@
   "ResetContentFolder": "恢复自动识别 Game/Content 目录",
   "PhysicsSourceHelp": "选择任意目录中的 Phy.json 即可。使用当前预览模型校验所需骨骼，不需要 FModel 目录或 Skeleton JSON。",
   "PhysicsRootBone": "根骨骼：{0}",
-  "PhysicsSourceNode": "来源节点：{0}"
+  "PhysicsSourceNode": "来源节点：{0}",
+  "SkipNonPoseNodes": "跳过非 Pose Driver 节点",
+  "SkipNonPoseHelp": "仅用于 Pose 导入。对于 Control Rig 等节点，只有确定其唯一姿态输入时才会跳过，节点自身的效果不会还原。多输入分支会被拒绝；不改变 Kawaii Physics 导入。",
+  "PoseFilterChanged": "导入选项已改变，请重新读取分组后再创建资产。",
+  "CannotSkipPoseNode": "无法跳过 {0}：需要唯一且有效的姿态输入。不能跳过多输入分支、缺失输入或无效的 LinkID。",
+  "SkippedPoseNode": "已跳过 {0}。该节点自身的效果（例如 Control Rig 修正）未还原。"
 }

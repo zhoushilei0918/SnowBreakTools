@@ -38,6 +38,7 @@
 #include "FModelRestoreWindow.h"
 #include "Framework/Docking/TabManager.h"
 #include "Widgets/Text/STextBlock.h"
+#include "Widgets/Input/SCheckBox.h"
 #include "Layout/Children.h"
 
 namespace
@@ -120,6 +121,13 @@ bool FFModelPanelConstructionTest::RunTest(const FString&)
                 const FString PostProcessLabel=NSLOCTEXT("FModelAnimRestore","SetPostProcessButton","(Optional) 3. Set as mesh Post Process Anim Blueprint").ToString();
                 const bool HasPostProcess=Labels.ContainsByPredicate([&](const TSharedRef<SWidget>& Label){return StaticCastSharedRef<STextBlock>(Label)->GetText().ToString()==PostProcessLabel;});
                 TestEqual(TEXT("Only Pose panel offers post-process assignment"),HasPostProcess,!Physics);
+                TArray<TSharedRef<SWidget>> Checkboxes;
+                FindPanelWidgets(Panel,TEXT("SCheckBox"),Checkboxes);
+                const FString SkipLabel=NSLOCTEXT("FModelAnimRestore","SkipNonPoseNodes","Skip non-Pose Driver nodes").ToString();
+                const bool HasSkip=Labels.ContainsByPredicate([&](const TSharedRef<SWidget>& Label){return StaticCastSharedRef<STextBlock>(Label)->GetText().ToString()==SkipLabel;});
+                TestEqual(TEXT("Only Pose panel offers skipping"),HasSkip,!Physics);
+                for (const auto& Checkbox : Checkboxes)
+                    TestEqual(TEXT("Pose skip option is enabled by default"),StaticCastSharedRef<SCheckBox>(Checkbox)->IsChecked(),!Physics);
             }
     }
     I18N.SetCurrentLanguage(PreviousLanguage);
@@ -302,6 +310,7 @@ bool FFModelLocalizationTest::RunTest(const FString&)
     const FString Previous=I18N.GetCurrentLanguage()->GetName();
     I18N.SetCurrentLanguage(TEXT("zh-Hans"));
     TestEqual(TEXT("Chinese menu title"),NSLOCTEXT("FModelAnimRestore","PoseTitle","Import Pose Drivers / Pose Assets").ToString(),FString(TEXT("导入 Pose Driver / Pose Asset")));
+    TestEqual(TEXT("Chinese skip option"),NSLOCTEXT("FModelAnimRestore","SkipNonPoseNodes","Skip non-Pose Driver nodes").ToString(),FString(TEXT("跳过非 Pose Driver 节点")));
     FString Report; UFModelAnimRestoreLibrary::Restore(nullptr,Report);
     TestEqual(TEXT("Chinese error"),Report,FString(TEXT("缺少导入设置。")));
     I18N.SetCurrentLanguage(TEXT("en"));

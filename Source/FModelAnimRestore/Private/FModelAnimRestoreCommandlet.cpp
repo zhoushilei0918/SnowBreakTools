@@ -24,6 +24,7 @@ int32 UFModelAnimRestoreCommandlet::Main(const FString& Params)
     if (!Anim.IsEmpty()) O->ReferenceAnimation=LoadObject<UAnimSequence>(nullptr,*Anim);
     if (!Anim.IsEmpty() && !O->ReferenceAnimation) { UE_LOG(LogTemp,Error,TEXT("Animation not found: %s"),*Anim); return 1; }
     O->bAssignPostProcess=FParse::Param(*Params,TEXT("AssignPostProcess"));
+    O->bSkipNonPoseNodes=FParse::Param(*Params,TEXT("SkipNonPoseNodes"));
     FString Report;
     bool Result=UFModelAnimRestoreLibrary::Restore(O,Report);
     if (!Output.IsEmpty()) FFileHelper::SaveStringToFile(Report,*Output,FFileHelper::EEncodingOptions::ForceUTF8);

@@ -61,6 +61,10 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2. FModel JSON", meta=(DisplayName="POSE 文件夹 / POSE Folder"))
     FDirectoryPath PoseDirectory;
 
+    /** Pose JSON only. Bypass single-input nodes without recreating their effects. */
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="2. FModel JSON", meta=(DisplayName="跳过非 Pose Driver 节点 / Skip non-Pose Driver nodes"))
+    bool bSkipNonPoseNodes = false;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="3. Output", meta=(DisplayName="输出目录 / Content Folder"))
     FString Destination = TEXT("/Game/FModelRestored/Character");
 

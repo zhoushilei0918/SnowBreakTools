@@ -84,6 +84,17 @@
         },
         {
           "Source": {
+            "Text": "Cannot skip {0}: expected exactly one valid pose input. Branches, missing inputs and invalid LinkIDs cannot be bypassed."
+          },
+          "Keys": [
+            {
+              "Key": "CannotSkipPoseNode",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
             "Text": "Choose the character's abpp.json file."
           },
           "Keys": [
@@ -678,6 +689,17 @@
         },
         {
           "Source": {
+            "Text": "The import option changed. Read the groups again before creating assets."
+          },
+          "Keys": [
+            {
+              "Key": "PoseFilterChanged",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
             "Text": "POSE folder"
           },
           "Keys": [
@@ -1068,6 +1090,39 @@
           "Keys": [
             {
               "Key": "SetPostProcessTransaction",
+              "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Pose import only. Bypass nodes such as Control Rig when they have exactly one pose input. Their effects are not restored. Multi-input branches are rejected; Kawaii Physics import is unchanged."
+          },
+          "Keys": [
+            {
+              "Key": "SkipNonPoseHelp",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Skip non-Pose Driver nodes"
+          },
+          "Keys": [
+            {
+              "Key": "SkipNonPoseNodes",
+              "Path": "Source/FModelAnimRestore/Private/SFModelRestorePanel.cpp"
+            }
+          ]
+        },
+        {
+          "Source": {
+            "Text": "Skipped {0}. This node's effects (such as Control Rig corrections) were not restored."
+          },
+          "Keys": [
+            {
+              "Key": "SkippedPoseNode",
               "Path": "Source/FModelAnimRestore/Private/FModelAnimRestoreLibrary.cpp"
             }
           ]

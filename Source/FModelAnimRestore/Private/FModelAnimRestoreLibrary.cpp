@@ -111,11 +111,40 @@ struct FPhysicsPlan
     FAnimNode_KawaiiPhysics Node;
 };
 
+// Count every serialized input, including disconnected inputs and array entries.
+// A blend with several inputs must never be mistaken for a linear pass-through.
+static bool FindPoseLinks(const TSharedPtr<FJsonValue>& Value, TArray<int32>& Links)
+{
+    if (!Value) return false;
+    if (Value->Type == EJson::Array)
+    {
+        for (const auto& Item : Value->AsArray()) if (!FindPoseLinks(Item, Links)) return false;
+    }
+    else if (Value->Type == EJson::Object)
+    {
+        for (const auto& Pair : Value->AsObject()->Values)
+        {
+            if (Pair.Key == TEXT("LinkID"))
+            {
+                double Index;
+                if (Pair.Value->Type != EJson::Number || !Pair.Value->TryGetNumber(Index) || !FMath::IsFinite(Index) || Index < -1 ||
+                    Index > MAX_int32 || Index != FMath::FloorToDouble(Index)) return false;
+                Links.Add(static_cast<int32>(Index));
+            }
+            else if (!FindPoseLinks(Pair.Value, Links)) return false;
+        }
+    }
+    return true;
+}
+
+
+
 struct FImporter : public FGCObject
 {
     UFModelAnimRestoreOptions& Options;
     FString Error;
     TArray<FString> Notes;
+    TArray<FString> SkippedPoseNodes;
     FValues Unsupported;
     TArray<TObjectPtr<UObject>> Assets;
     TArray<FPosePlan> Poses;
@@ -147,7 +176,7 @@ struct FImporter : public FGCObject
         for (auto& V : Items) if (V->Type == EJson::Object && String(V->AsObject(), TEXT("Type")) == Type) return V->AsObject();
         return nullptr;
     }
-    bool ReadGraph(const FString& Filename, FGraph& Out)
+    bool ReadGraph(const FString& Filename, FGraph& Out, bool bSkipNonPoseNodes = false)
     {
         FValues Exports;
         if (!Load(Filename, Exports)) return false;
@@ -178,9 +207,19 @@ struct FImporter : public FGCObject
             const FNode& N = Nodes[Current];
             if (N.Name.Contains(TEXT("LinkedInputPose")) || N.Name.Contains(TEXT("LinkedAnimGraph")) || N.Name.Contains(TEXT("CopyPoseFromMesh")))
             { Boundary = true; break; }
-            if (N.Name.Contains(TEXT("PoseDriver")) || N.Name.Contains(TEXT("KawaiiPhysics"))) Out.Ordered.Insert(N, 0);
+            if (N.Name.Contains(TEXT("PoseDriver")) || (!bSkipNonPoseNodes && N.Name.Contains(TEXT("KawaiiPhysics")))) Out.Ordered.Insert(N, 0);
             else if (!(N.Name.Contains(TEXT("Root")) || N.Name.Contains(TEXT("LocalToComponentSpace")) || N.Name.Contains(TEXT("ComponentToLocalSpace")) || N.Name.Contains(TEXT("Inertialization"))))
-                return Fail(NSLOCTEXT("FModelAnimRestore","UnsupportedChain","The pose chain contains an unsupported node: ").ToString() + N.Name);
+            {
+                if (!bSkipNonPoseNodes)
+                    return Fail(NSLOCTEXT("FModelAnimRestore","UnsupportedChain","The pose chain contains an unsupported node: ").ToString() + N.Name);
+                TArray<int32> Links;
+                if (!FindPoseLinks(MakeShared<FJsonValueObject>(N.Settings),Links) || Links.Num()!=1 || !Nodes.IsValidIndex(Links[0]))
+                    return Fail(FText::Format(NSLOCTEXT("FModelAnimRestore","CannotSkipPoseNode","Cannot skip {0}: expected exactly one valid pose input. Branches, missing inputs and invalid LinkIDs cannot be bypassed."),FText::FromString(N.Name)).ToString());
+                SkippedPoseNodes.AddUnique(N.Name);
+                Notes.AddUnique(FText::Format(NSLOCTEXT("FModelAnimRestore","SkippedPoseNode","Skipped {0}. This node's effects (such as Control Rig corrections) were not restored."),FText::FromString(N.Name)).ToString());
+                Current=Links[0];
+                continue;
+            }
             if (N.Name.Contains(TEXT("Inertialization"))) Notes.AddUnique(NSLOCTEXT("FModelAnimRestore","InertializationNote","Inertialization and state-transition logic are outside static physics import and were not copied.").ToString());
             FObject Link;
             for (const FString Key : {TEXT("Result"),TEXT("Source"),TEXT("SourcePose"),TEXT("ComponentPose"),TEXT("LocalPose")})
@@ -333,7 +372,7 @@ struct FImporter : public FGCObject
         if (Options.bAssignPostProcess && Options.TargetMesh->GetPostProcessAnimBlueprint()) return Fail(NSLOCTEXT("FModelAnimRestore","ExistingPostProcess","The mesh already has a Post Process Anim Blueprint. Disable assignment and merge the result manually.").ToString());
         if (!Options.PoseBlueprintJson.FilePath.IsEmpty())
         {
-            if (!ReadGraph(Options.PoseBlueprintJson.FilePath,PoseGraph)) return false;
+            if (!ReadGraph(Options.PoseBlueprintJson.FilePath,PoseGraph,Options.bSkipNonPoseNodes)) return false;
             for (auto& N : PoseGraph.Ordered)
                 if (!N.Name.Contains(TEXT("PoseDriver")) || !PlanPose(N)) return Fail(NSLOCTEXT("FModelAnimRestore","UnexpectedPoseNode","The pose JSON contains an unsupported non-PoseDriver node.").ToString());
         }
@@ -512,6 +551,10 @@ struct FImporter : public FGCObject
         J->SetStringField(TEXT("physics_json"),Options.PhysicsBlueprintJson.FilePath);
         J->SetStringField(TEXT("physics_bone_validation"),TEXT("current_mesh_bone_names"));
         J->SetStringField(TEXT("pose_folder"),Options.PoseDirectory.Path);
+        J->SetBoolField(TEXT("skip_non_pose_nodes"),Options.bSkipNonPoseNodes);
+        FValues Skipped;
+        for (const auto& Name : SkippedPoseNodes) Skipped.Add(MakeShared<FJsonValueString>(Name));
+        J->SetArrayField(TEXT("skipped_pose_nodes"),Skipped);
         FValues PoseInputs;
         for (const auto& P : Poses)
         {
@@ -631,6 +674,8 @@ bool UFModelAnimRestoreLibrary::Inspect(UFModelAnimRestoreOptions* Options,TArra
         Groups.Add(MoveTemp(Group));
     }
     Report=FText::Format(NSLOCTEXT("FModelAnimRestore","GroupsRead","Found {0} groups. Select one or more groups to import."),FText::AsNumber(Groups.Num())).ToString();
+    if (!Options->PoseBlueprintJson.FilePath.IsEmpty())
+        for (const auto& Note : Importer.Notes) Report+=TEXT("\n")+Note;
     return true;
 }
 
@@ -774,3 +819,90 @@ bool UFModelAnimRestoreLibrary::AddToBlueprint(UFModelAnimRestoreBatch* Batch,UA
         FText::AsNumber(AddedNodes.Num()),FText::FromString(Blueprint->GetName()+TEXT(" / ")+Graph->GetName())).ToString();
     return true;
 }
+
+#if WITH_DEV_AUTOMATION_TESTS
+#include "Misc/AutomationTest.h"
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FFModelPoseSkipTest,"FModelAnimRestore.Girl018.SkipNonPoseNodes",
+    EAutomationTestFlags::EditorContext|EAutomationTestFlags::EngineFilter)
+bool FFModelPoseSkipTest::RunTest(const FString&)
+{
+    using namespace FModelRestore;
+    TStrongObjectPtr<UFModelAnimRestoreOptions> Options(NewObject<UFModelAnimRestoreOptions>());
+    TestFalse(TEXT("Skipping is opt-in"),Options->bSkipNonPoseNodes);
+    const FString Source=TEXT("F:/BreakSnowStudy/FModel/Output/Exports/Game/Content/Characters/Girl/girl018");
+    const TArray<FString> Expected={TEXT("AnimGraphNode_PoseDriver"),TEXT("AnimGraphNode_PoseDriver_1"),TEXT("AnimGraphNode_PoseDriver_3"),TEXT("AnimGraphNode_PoseDriver_2")};
+    auto CheckOrder=[&](const FGraph& Graph)
+    {
+        if (!TestEqual(TEXT("All four Girl018 Pose Drivers retained"),Graph.Ordered.Num(),4)) return;
+        for (int32 I=0;I<Expected.Num();++I)
+            TestEqual(TEXT("Pose flow order follows LinkIDs"),Graph.Ordered[I].Name,Expected[I]);
+    };
+    for (const TCHAR* File : {TEXT("girl018_abpp.json"),TEXT("girl018_02_abpp.json")})
+    {
+        FImporter Strict(*Options); FGraph StrictGraph;
+        TestFalse(TEXT("Default behavior still rejects Control Rig"),Strict.ReadGraph(Source/File,StrictGraph));
+        TestTrue(TEXT("Original unsupported node is reported"),Strict.Error.Contains(TEXT("AnimGraphNode_ControlRig")));
+        FImporter Filtered(*Options); FGraph FilteredGraph;
+        if (!TestTrue(TEXT("Real Girl018 JSON skips its single-input Control Rig"),Filtered.ReadGraph(Source/File,FilteredGraph,true)))
+        {AddError(Filtered.Error); return false;}
+        CheckOrder(FilteredGraph);
+        TestEqual(TEXT("One skipped node"),Filtered.SkippedPoseNodes.Num(),1);
+        TestEqual(TEXT("Skipped node named"),Filtered.SkippedPoseNodes[0],FString(TEXT("AnimGraphNode_ControlRig")));
+        TestTrue(TEXT("Skipped effects are reported"),Filtered.Notes.ContainsByPredicate([](const FString& Note){return Note.Contains(TEXT("AnimGraphNode_ControlRig"));}));
+    }
+
+    const FString TestFile=FPaths::ProjectSavedDir()/TEXT("FModelAnimRestore/PoseChainTests")/(FGuid::NewGuid().ToString(EGuidFormats::Digits)+TEXT(".json"));
+    IFileManager::Get().MakeDirectory(*FPaths::GetPath(TestFile),true);
+    auto CheckModified=[&](const TCHAR* Label,TFunctionRef<void(const FObject&)> Change,bool ExpectedSuccess)
+    {
+        FImporter Reader(*Options); FValues Exports;
+        if (!Reader.Load(Source/TEXT("girl018_abpp.json"),Exports)) {AddError(Reader.Error);return;}
+        FObject Defaults;
+        for (const auto& Value : Exports)
+            if (String(Value->AsObject(),TEXT("Name")).StartsWith(TEXT("Default__"))) Defaults=Object(Value->AsObject(),TEXT("Properties"));
+        Change(Defaults);
+        FString Json; FJsonSerializer::Serialize(Exports,TJsonWriterFactory<>::Create(&Json));
+        if (!TestTrue(TEXT("Write isolated graph fixture"),FFileHelper::SaveStringToFile(Json,*TestFile))) return;
+        FImporter Importer(*Options); FGraph Graph;
+        TestEqual(Label,Importer.ReadGraph(TestFile,Graph,true),ExpectedSuccess);
+        if (ExpectedSuccess) CheckOrder(Graph);
+        else TestFalse(TEXT("Invalid graph explains why it failed"),Importer.Error.IsEmpty());
+    };
+    auto Rig=[](const FObject& Defaults){return Object(Defaults,TEXT("AnimGraphNode_ControlRig"));};
+    CheckModified(TEXT("Reject an additional disconnected branch"),[&](const FObject& D)
+    {auto Link=MakeShared<FJsonObject>();Link->SetNumberField(TEXT("LinkID"),-1);Rig(D)->SetObjectField(TEXT("OtherPose"),Link);},false);
+    CheckModified(TEXT("Reject pose arrays with multiple inputs"),[&](const FObject& D)
+    {auto Link=Object(Rig(D),TEXT("Source"));Rig(D)->RemoveField(TEXT("Source"));Rig(D)->SetArrayField(TEXT("BlendPose"),{MakeShared<FJsonValueObject>(Link),MakeShared<FJsonValueObject>(Link)});},false);
+    CheckModified(TEXT("Follow an unambiguous nested input"),[&](const FObject& D)
+    {auto Link=Object(Rig(D),TEXT("Source"));Rig(D)->RemoveField(TEXT("Source"));Rig(D)->SetArrayField(TEXT("Inputs"),{MakeShared<FJsonValueObject>(Link)});},true);
+    CheckModified(TEXT("Reject a missing input"),[&](const FObject& D){Rig(D)->RemoveField(TEXT("Source"));},false);
+    for (double LinkID : {-1.0,2.5,6.0,99999.0})
+        CheckModified(TEXT("Reject disconnected, fractional, cyclic or out-of-range links"),[&](const FObject& D){Object(Rig(D),TEXT("Source"))->SetNumberField(TEXT("LinkID"),LinkID);},false);
+    CheckModified(TEXT("Reject string LinkIDs"),[&](const FObject& D){Object(Rig(D),TEXT("Source"))->SetStringField(TEXT("LinkID"),TEXT("2"));},false);
+    CheckModified(TEXT("Preserve order when Control Rig is between drivers"),[&](const FObject& D)
+    {
+        Object(Object(D,TEXT("AnimGraphNode_PoseDriver")),TEXT("SourcePose"))->SetNumberField(TEXT("LinkID"),2);
+        Object(Rig(D),TEXT("Source"))->SetNumberField(TEXT("LinkID"),4);
+        Object(Object(D,TEXT("AnimGraphNode_PoseDriver_1")),TEXT("SourcePose"))->SetNumberField(TEXT("LinkID"),6);
+    },true);
+    CheckModified(TEXT("Preserve order when Control Rig is after drivers"),[&](const FObject& D)
+    {
+        Object(Object(D,TEXT("AnimGraphNode_PoseDriver")),TEXT("SourcePose"))->SetNumberField(TEXT("LinkID"),2);
+        Object(Rig(D),TEXT("Source"))->SetNumberField(TEXT("LinkID"),1);
+        Object(Object(D,TEXT("AnimGraphNode_Root")),TEXT("Result"))->SetNumberField(TEXT("LinkID"),6);
+    },true);
+
+    // Even API callers sharing an options object cannot enable skipping for a physics import.
+    Options->bSkipNonPoseNodes=true;
+    Options->PhysicsBlueprintJson.FilePath=Source/TEXT("girl018_abpp.json");
+    Options->TargetMesh=LoadObject<USkeletalMesh>(nullptr,TEXT("/Game/FModelRestoreTests/Girl022/Input/girl022_body01_skm.girl022_body01_skm"));
+    if (!TestNotNull(TEXT("Physics guard fixture"),Options->TargetMesh.Get())) return false;
+    FImporter Physics(*Options);
+    TestFalse(TEXT("Physics path still rejects Control Rig"),Physics.Plan(false));
+    TestTrue(TEXT("Physics retains its unsupported-node diagnostic"),Physics.Error.Contains(TEXT("AnimGraphNode_ControlRig")));
+    TestTrue(TEXT("Physics did not skip anything"),Physics.SkippedPoseNodes.IsEmpty());
+    AddInfo(TEXT("Both real Girl018 abpp variants retain four ordered drivers; single-input bypass, branches, invalid links, cycles and physics isolation checked."));
+    return true;
+}
+#endif
